@@ -1,0 +1,118 @@
+.top-container {
+    margin: 1% 2%;
+    width: 100%;
+    display: flex;
+}
+
+.side_bar {
+    width: 15%;
+    background-color: #E7F0F7;
+    margin: 1%;
+    padding: 1%;
+    display: flex;
+    flex-direction: column;
+}
+
+.side_link {
+    text-decoration: none;
+    color: #000000;
+    font-size: 24px;
+    font-weight: bold;
+    margin: 3% 5%;
+}
+
+    .side_link:hover {
+        color: #FA7E26;
+    }
+
+.main-container {
+    width: 75%;
+    background-color: #E7F0F7;
+    margin: 1%;
+    padding: 1%;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+}
+
+.info_bar {
+    background-color: #ffffff;
+    border-radius: 10px;
+    box-shadow: 0px 4px 4px rgba(0, 0, 0, 0.25);
+    padding: 2%;
+    margin-bottom: 3%;
+}
+
+.date_bar {
+    display: flex;
+    justify-content: space-between;
+    color: #C4C4C4;
+}
+
+    .date_bar h4 {
+        margin: 0 1%;
+    }
+
+.table {
+    border-collapse: collapse;
+    width: 100%
+}
+
+    .table.sum th, td {
+        text-align: center;
+        font-size: 24px;
+    }
+
+    .table.data td {
+        text-align: start;
+        font-weight: bolder;
+        padding: 1%;
+    }
+
+    .table.data tr:hover {
+        border: 2px dashed #FA7E26;
+    }
+
+.fas {
+    color: #C4C4C4;
+}
+
+    .fas:hover {
+        color: #FA7E26;
+    }
+
+    .table.customer td{
+        font-size: 14px;
+    }
+.search_bar {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    flex-direction: column;
+    margin-bottom: 3%;
+    color: #C4C4C4;
+}
+
+.form-search {
+    width: 60%;
+    display: flex;
+    justify-content: center
+}
+
+#search-box {
+    border: none;
+    font-size: 18px;
+    width: 60%;
+    border-radius: 10px 0 0 10px;
+    height: 60px;
+    box-shadow: 0px 4px 4px rgba(0, 0, 0, 0.25);
+}
+
+.btn-search {
+    background-color: #ffffff;
+    border: none;
+    width: 60px;
+    font-size: 30px;
+    border-radius: 0 10px 10px 0;
+    box-shadow: 0px 4px 4px rgba(0, 0, 0, 0.25);
+}

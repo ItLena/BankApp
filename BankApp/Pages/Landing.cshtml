@@ -1,0 +1,115 @@
+﻿@page
+@model BankApp.Pages.LandingModel
+@{
+}
+ <link rel="stylesheet" href="~/css/landing.css" asp-append-version="true" />
+  <script src="https://kit.fontawesome.com/607a5ea1bc.js" crossorigin="anonymous"></script> 
+<body>
+ <div class ="top-container">
+        <div class = "side_bar">
+            <a href="#" class="side_link">Add New Customer</a>
+            <a href="#" class="side_link">Registrate new user</a>
+            <a href="#" class="side_link">List all customers</a>
+            <a href="#" class="side_link">Currency rates</a>
+        </div>
+     
+        <div class = "main-container">
+            <div class = "info_bar summering">
+                <table class = "table sum">
+                    <tr>
+                        <th>Total customers</th>
+                        <th>Total accounts </th>
+                        <th>Total Assets </th>       
+                    </tr>
+                    <tr>
+                        <td>200</td>
+                        <td>300</td>
+                        <td>300 0000</td>
+                    </tr>
+                </table>    
+            </div>
+     
+            <div class = "date_bar">
+                <h4>24 hous data</h4>
+                <h4>Date/Time/Now</h4>
+            </div>
+
+            <div class = "info_bar data">
+                <table class = "table data">
+                   <a hrev = ""><tr>
+                    <td>Transaktions</td>
+                    <td>SEK 30000000</td>
+                   <td><a href=""> <i class="fas fa-caret-right"></i></a></td> 
+                    </tr></a>
+                <a href=""><tr>
+                     <td>Withdrows</td>
+                    <td>SEK 63980000</td>
+                    <td><a><i class="fas fa-caret-right"></i></a></td> 
+                </tr></a>
+                <a href=""><tr>
+                     <td>Deposit</td>
+                    <td>SEK 1680000</td>
+                    <td><a><i class="fas fa-caret-right"></i></a></td>
+                </tr> </a>
+               
+            </table>
+            </div>
+
+            <div class = "search_bar">
+                <h2>Search customer by name or number</h2>
+               <form method = "get" asp-action="SearchPhrase" class = "form-search">
+                    <input name="searchPhrase" type="text" placeholder=" Search.." id = "search-box">
+                    <button class = "btn-search" type="submit"><i class="fas fa-search"></i></button>
+                </form>
+
+
+            </div>
+
+            <div class = "info_bar customers">
+                <table class="table customer">
+                    <tr>
+                        <th>Id</th>
+                        <th>Personal Number</th>
+                        <th>Name 
+                            <a asp-page="/Landing" asp-route-searchPhrase="@Model.SearchPhrase" asp-route-sortColumn="Name" asp-route-sortOrder="asc"><i class="fas fa-angle-up"></i></a>
+                            <a asp-page="/Landing" asp-route-searchPhrase="@Model.SearchPhrase" asp-route-sortColumn="Name" asp-route-sortOrder="desc"><i class="fas fa-angle-down"></i></a>
+                        </th>
+                        <th>Address </th>
+                        <th>City
+                             <a asp-page="/Landing" asp-route-searchPhrase="@Model.SearchPhrase" asp-route-sortColumn="City" asp-route-sortOrder="asc"><i class="fas fa-angle-up"></i></a>
+                             <a asp-page="/Landing" asp-route-searchPhrase="@Model.SearchPhrase" asp-route-sortColumn="City" asp-route-sortOrder="desc"><i class="fas fa-angle-down"></i></a>
+                        </th>
+                        <th>Country
+                            <a asp-page="/Landing" asp-route-searchPhrase="@Model.SearchPhrase" asp-route-sortColumn="Country" asp-route-sortOrder="asc"><i class="fas fa-angle-up"></i></a>
+                            <a asp-page="/Landing" asp-route-searchPhrase="@Model.SearchPhrase" asp-route-sortColumn="Country" asp-route-sortOrder="desc"><i class="fas fa-angle-down"></i></a>
+                        </th>
+                        <th>Option</th>
+                    </tr>
+                    @if (@Model.SearchPhrase != null)
+                    {
+                    foreach (var item in Model.Items)
+                    {
+                        <tr>
+                            <td> @item.Id</td>
+                            <td> @item.PersonalNumber</td>
+                            <td> @(item.FirstName + " " + item.LastName)</td>
+                            <td> @(item.ZipCode + " " + item.Street) </td>
+                            <td> @item.City  </td>
+                            <td> @item.Country</td>
+                            <td>
+                                <a asp-page="/Customer" asp-route-id="@item.Id"><i class="fas fa-caret-right"></i></a>
+                            </td>
+                        </tr>
+                    }
+                    }
+                </table>
+            </div>
+        </div>
+     
+     
+     </div>
+</body>
+
+@section Scripts {
+    @{await Html.RenderPartialAsync("_ValidationScriptsPartial");}
+}
