@@ -1,6 +1,6 @@
 {
   "Version": 1,
-  "Hash": "X92SfRSKs4ZdqeIVDdk9DSlpuu4Kr9i3B8M3miWPdvI=",
+  "Hash": "UNHloA0dsWQoSudPaW4G/hruw9gTLEitFaJ2xOalsH0=",
   "Source": "BankApp",
   "BasePath": "_content/BankApp",
   "Mode": "Default",
@@ -49,6 +49,23 @@
       "CopyToOutputDirectory": "Never",
       "CopyToPublishDirectory": "PreserveNewest",
       "OriginalItemSpec": "C:\\Users\\Elena\\Desktop\\Fulstack Utbildning\\Backend\\BankApp\\BankApp\\BankApp\\obj\\Debug\\net6.0\\scopedcss\\projectbundle\\BankApp.bundle.scp.css"
+    },
+    {
+      "Identity": "C:\\Users\\Elena\\Desktop\\Fulstack Utbildning\\Backend\\BankApp\\BankApp\\BankApp\\wwwroot\\css\\customer.css",
+      "SourceId": "BankApp",
+      "SourceType": "Discovered",
+      "ContentRoot": "C:\\Users\\Elena\\Desktop\\Fulstack Utbildning\\Backend\\BankApp\\BankApp\\BankApp\\wwwroot\\",
+      "BasePath": "_content/BankApp",
+      "RelativePath": "css/customer.css",
+      "AssetKind": "All",
+      "AssetMode": "All",
+      "AssetRole": "Primary",
+      "RelatedAsset": "",
+      "AssetTraitName": "",
+      "AssetTraitValue": "",
+      "CopyToOutputDirectory": "Never",
+      "CopyToPublishDirectory": "PreserveNewest",
+      "OriginalItemSpec": "wwwroot\\css\\customer.css"
     },
     {
       "Identity": "C:\\Users\\Elena\\Desktop\\Fulstack Utbildning\\Backend\\BankApp\\BankApp\\BankApp\\wwwroot\\css\\header.css",

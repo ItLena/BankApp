@@ -38,6 +38,9 @@ namespace BankApp.Services
 
         }
 
-        
+        public Customer ViewCustomer(int customerId)
+        {
+            return _context.Customers.First(e => e.CustomerId == customerId);
+        }
     }
 }

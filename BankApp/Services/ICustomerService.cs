@@ -5,5 +5,7 @@ namespace BankApp.Services
     public interface ICustomerService
     {
         List<Customer> GetCustomers(string sortColumn, string sortOrder);
+
+        Customer ViewCustomer(int customerId);
     }
 }
