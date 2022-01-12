@@ -97,7 +97,7 @@
                             <td> @item.City  </td>
                             <td> @item.Country</td>
                             <td>
-                                <a asp-page="/ViewCustomer" asp-route-id="@item.Id"><i class="fas fa-caret-right"></i></a>
+                                <a asp-page="/Customer/ViewCustomer" asp-route-customerId="@item.Id"><i class="fas fa-caret-right"></i></a>
                             </td>
                         </tr>
                     }

@@ -4,8 +4,9 @@ namespace BankApp.Services
 {
     public interface IAccountService
     {
-        List<Account> GetAccounts(string sortColumn, string sortOrder);
+        List<Account> GetAllAccounts();
 
         Account ViewAccount(int accountId);
+        void Update(Account account);
     }
 }

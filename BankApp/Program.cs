@@ -10,7 +10,7 @@ builder.Services.AddDbContext<BankAppDataContext>(options =>
     options.UseSqlServer(
         builder.Configuration.GetConnectionString("DefaultConnection")));
 builder.Services.AddTransient<ICustomerService, CustomerService>();
-
+builder.Services.AddTransient<IAccountService, AccountService>();
 
 var app = builder.Build();
 

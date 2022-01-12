@@ -4,29 +4,27 @@ namespace BankApp.Services
 {
     public class AccountService : IAccountService
     {
-        private readonly BankAppDataContext _accountContext;
+        private readonly BankAppDataContext _context;
 
-        public AccountService(BankAppDataContext accountContext)
+        public AccountService(BankAppDataContext context)
         {
-            _accountContext = accountContext;
+            _context = context;
         }
 
        
-        public List<Account> GetAccounts(string sortColumn, string sortOrder)
+        public List<Account> GetAllAccounts()
         {
-            var query = _accountContext.Accounts.AsQueryable();
-
-            if (sortColumn == "Country")
-                if (sortOrder == "asc")
-                    query = query.OrderBy(r => r.AccountId);
-                else
-                    query = query.OrderByDescending(r => r.AccountId);
-            return query.ToList();
+            return _context.Accounts.ToList();
         }
 
         public Account ViewAccount(int accountId)
         {
-            return _accountContext.Accounts.First(e => e.AccountId == accountId);
+            return _context.Accounts.First(e => e.AccountId == accountId);
+        }
+
+        public void Update(Account account)
+        {
+            _context.SaveChanges();
         }
     }
 }

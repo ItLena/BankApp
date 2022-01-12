@@ -11,7 +11,7 @@ namespace BankApp.Services
             _context = context;
         }
 
-        public List<Customer> GetCustomers(string sortColumn, string sortOrder)
+        public IEnumerable<Customer> GetCustomers(string sortColumn, string sortOrder)
         {
             var query = _context.Customers.AsQueryable();
 
@@ -40,7 +40,7 @@ namespace BankApp.Services
 
         public Customer ViewCustomer(int customerId)
         {
-            return _context.Customers.First(e => e.CustomerId == customerId);
+            return _context.Customers.First(c => c.CustomerId == customerId);
         }
     }
 }

@@ -1,0 +1,94 @@
+﻿@page
+@model BankApp.Pages.Customer.ViewCustomerModel
+@{
+}
+ <link rel="stylesheet" href="~/css/customer.css" asp-append-version="true" />
+  <script src="https://kit.fontawesome.com/607a5ea1bc.js" crossorigin="anonymous"></script> 
+  <body>
+       <div class = "top-container">
+     <div class = "over-container">
+        <div class = "customer">
+            <div class = "customer-icon">             
+                  <i class="fas fa-user"></i>
+            </div>
+            <div class = "customer-data">
+               <table class = "table-customer">
+                 @* <tr>
+                      <th>@Html.DisplayNameFor(x => x.CustomerId)</th> 
+                      <td>@Model.CustomerId</td>
+                  </tr>*@ 
+                  <tr>
+                      <th>@Html.DisplayNameFor(x => x.Name)</th> 
+                      <td>@Model.Name</td>
+                  </tr> 
+                  <tr>
+                        <th>@Html.DisplayNameFor(x => x.Gender)</th> 
+                        <td>@Model.Gender</td>
+                  </tr> 
+                  <tr>
+                        <th>@Html.DisplayNameFor(x => x.NationalId)</th>
+                        <td>@Model.NationalId</td>
+                      
+                  </tr> 
+                  <tr>
+                         <th>@Html.DisplayNameFor(x => x.Birthday)</th> 
+                         <td>@Model.Birthday</td>
+                  </tr> 
+                  <tr>
+                         <th>@Html.DisplayNameFor(x => x.Address)</th> 
+                         <td>@Model.Address</td>
+                  </tr> 
+                  <tr>
+                        <th>@Html.DisplayNameFor(x => x.Phone)</th> 
+                         <td>@Model.Phone</td>
+                  </tr> 
+                  <tr>
+                          <th>@Html.DisplayNameFor(x => x.Email)</th> 
+                          <td>@Model.Email</td>
+                  </tr>          
+               </table>
+            </div>
+            <div class = "edit">
+                <h1>@Model.NationalCode</h1>
+                <button class = "btn-edit">Edit</button>
+            </div>
+        </div>
+
+        <div class = "balance-box">
+            <h2>Total balance</h2>
+            <h1>@Model.</h1>
+        </div>
+    </div>
+
+    <div class = "lower-container">
+        <h2>Customer Accounts</h2>
+
+        <div class = "btn-box">
+            <button class = "btn-bank">Pay</button>
+             <button class = "btn-bank">Deposit</button>
+              <button class = "btn-bank">Withdraw</button>
+               <button class = "btn-bank">New account</button>
+        </div>
+
+        <div class = "info_bar">
+             <table class = "table accounts">
+                  <tr>
+                      <th>Account number</th>
+                      <th>Balance</th>   
+                      <th></th>
+                  </tr>
+                  foreach (var item in Model.Items)
+                  {
+                      <tr>
+                          <td> item.AccountId</td>
+                          <td> item.Balance</td>
+                          <td>
+                              <a asp-page="/ViewAccount" asp-route-id="Id"><i class="fas fa-caret-right"></i></a>
+                          </td>
+                      </tr>
+                  }
+              </table>    
+        </div>
+    </div>
+</div>
+  </body>
