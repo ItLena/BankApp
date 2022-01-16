@@ -8,15 +8,13 @@
        <div class = "top-container">
      <div class = "over-container">
         <div class = "customer">
+                <div class = "customer-box">
             <div class = "customer-icon">             
                   <i class="fas fa-user"></i>
             </div>
-            <div class = "customer-data">
+           
                <table class = "table-customer">
-                 @* <tr>
-                      <th>@Html.DisplayNameFor(x => x.CustomerId)</th> 
-                      <td>@Model.CustomerId</td>
-                  </tr>*@ 
+                 
                   <tr>
                       <th>@Html.DisplayNameFor(x => x.Name)</th> 
                       <td>@Model.Name</td>
@@ -47,16 +45,17 @@
                           <td>@Model.Email</td>
                   </tr>          
                </table>
+           
             </div>
             <div class = "edit">
                 <h1>@Model.NationalCode</h1>
-                <button class = "btn-edit">Edit</button>
+                <button class = "btn-edit"><a asp-page="/Customer/Edit" asp-route-customerId="@Model.CustomerId">Edit</a></button>
             </div>
         </div>
 
         <div class = "balance-box">
             <h2>Total balance</h2>
-            <h1>@Model.</h1>
+            <h1>@Model.TotalBalance</h1>
         </div>
     </div>
 
@@ -71,19 +70,21 @@
         </div>
 
         <div class = "info_bar">
-             <table class = "table accounts">
+             <table class = "table-accounts">
                   <tr>
                       <th>Account number</th>
                       <th>Balance</th>   
+                      <th>Ownership</th>   
                       <th></th>
                   </tr>
-                  foreach (var item in Model.Items)
+                  @foreach (var item in Model.AccountItems)
                   {
                       <tr>
-                          <td> item.AccountId</td>
-                          <td> item.Balance</td>
-                          <td>
-                              <a asp-page="/ViewAccount" asp-route-id="Id"><i class="fas fa-caret-right"></i></a>
+                          <td class = "account-td">@item.AccountId</td>
+                          <td class = "account-td">@item.Balance</td>
+                          <td class = "account-td">@item.Type</td>
+                          <td class = "account-td">
+                              <a asp-page="/Account/ViewAccount" asp-route-accountId="AccountId"><i class="fas fa-caret-right"></i></a>
                           </td>
                       </tr>
                   }

@@ -15,12 +15,12 @@ build_property.GenerateRazorMetadataSourceChecksumAttributes =
 build_property.MSBuildProjectDirectory = C:\Users\Elena\Desktop\Fulstack Utbildning\Backend\BankApp\BankApp\BankApp
 build_property._RazorSourceGeneratorDebug = 
 
-[C:/Users/Elena/Desktop/Fulstack Utbildning/Backend/BankApp/BankApp/BankApp/Pages/Customer/CustomerList.cshtml]
-build_metadata.AdditionalFiles.TargetPath = UGFnZXNcQ3VzdG9tZXJcQ3VzdG9tZXJMaXN0LmNzaHRtbA==
-build_metadata.AdditionalFiles.CssScope = 
-
 [C:/Users/Elena/Desktop/Fulstack Utbildning/Backend/BankApp/BankApp/BankApp/Pages/Customer/Edit.cshtml]
 build_metadata.AdditionalFiles.TargetPath = UGFnZXNcQ3VzdG9tZXJcRWRpdC5jc2h0bWw=
+build_metadata.AdditionalFiles.CssScope = 
+
+[C:/Users/Elena/Desktop/Fulstack Utbildning/Backend/BankApp/BankApp/BankApp/Pages/Customer/Index.cshtml]
+build_metadata.AdditionalFiles.TargetPath = UGFnZXNcQ3VzdG9tZXJcSW5kZXguY3NodG1s
 build_metadata.AdditionalFiles.CssScope = 
 
 [C:/Users/Elena/Desktop/Fulstack Utbildning/Backend/BankApp/BankApp/BankApp/Pages/Customer/New.cshtml]

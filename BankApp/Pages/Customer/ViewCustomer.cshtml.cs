@@ -7,14 +7,14 @@ namespace BankApp.Pages.Customer
 {
     public class ViewCustomerModel : PageModel
     {
-        private readonly ICustomerService _customerService;
-        private readonly IAccountService _accountService;
+        //private readonly ICustomerService _customerService;
+        //private readonly IAccountService _accountService;
         private readonly BankAppDataContext _context;
 
         public ViewCustomerModel(ICustomerService customerService, IAccountService accountService, BankAppDataContext context)
         {
-            _customerService = customerService;
-            _accountService = accountService;
+            //_customerService = customerService;
+            //_accountService = accountService;
             _context = context;
         }
                 
@@ -28,12 +28,13 @@ namespace BankApp.Pages.Customer
             public string Name { get; set; }
             public string Address { get; set; }
             public string Phone { get; set; }
-       
+
+            public decimal TotalBalance { get; set; }
         public class AccountItem
         {
             public int AccountId { get; set; }
             public decimal Balance { get; set; }
-
+            public string Type { get; set; }
         }
 
         public List<AccountItem> AccountItems { get; set; }
@@ -51,6 +52,24 @@ namespace BankApp.Pages.Customer
             Email = customer.Emailaddress;
             NationalCode = customer.CountryCode;
 
+            AccountItems = (from a in _context.Accounts
+                            join d in _context.Dispositions on a.AccountId equals d.AccountId
+                            join c in _context.Customers on d.CustomerId equals c.CustomerId
+                            where c.CustomerId == customerId
+                select new AccountItem
+                {
+                    AccountId = a.AccountId,
+                    Balance = a.Balance,
+                    Type = d.Type
+                }).ToList();
+
+            foreach (var item in AccountItems)
+            {
+                TotalBalance = item.Balance + TotalBalance;
+            }
+           
         }
+
+       
     }
 }

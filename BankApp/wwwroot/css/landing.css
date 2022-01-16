@@ -67,10 +67,7 @@
         text-align: start;
         font-weight: bolder;
         padding: 1%;
-    }
-
-    .table.data tr:hover {
-        border: 2px dashed #FA7E26;
+        border-bottom: 1px dashed #FA7E26;
     }
 
 .fas {
@@ -83,6 +80,9 @@
 
     .table.customer td{
         font-size: 14px;
+    }
+   .table.customer tr:hover {
+         border: 2px dashed #FA7E26;
     }
 .search_bar {
     display: flex;

@@ -1,0 +1,65 @@
+﻿@page
+@model BankApp.Pages.Customer.IndexModel
+@{
+}
+<link rel="stylesheet" href="~/css/landing.css" asp-append-version="true" />
+  <script src="https://kit.fontawesome.com/607a5ea1bc.js" crossorigin="anonymous"></script> 
+<body>
+ <div class ="top-container">
+        <div class = "side_bar">
+            <a href="#" class="side_link">Add New Customer</a>
+            <a href="#" class="side_link">Registrate new user</a>
+            <a href="#" class="side_link">List all customers</a>
+            <a href="#" class="side_link">Currency rates</a>
+        </div>
+     
+        <div class = "main-container">
+            <div class = "search_bar">
+                <h2>Search customer by name or number</h2>
+               <form method = "get" asp-action="SearchPhrase" class = "form-search">
+                    <input name="searchPhrase" type="text" placeholder=" Search.." id = "search-box">
+                    <button class = "btn-search" type="submit"><i class="fas fa-search"></i></button>
+                </form>
+            </div>
+
+            <div class = "info_bar customers">
+                <table class="table customer">
+                    <tr>
+                        <th>Personal National Number</th>
+                        <th>Name 
+                            <a asp-page="/Index" asp-route-searchPhrase="@Model.SearchPhrase" asp-route-sortColumn="Name" asp-route-sortOrder="asc"><i class="fas fa-angle-up"></i></a>
+                            <a asp-page="/Index" asp-route-searchPhrase="@Model.SearchPhrase" asp-route-sortColumn="Name" asp-route-sortOrder="desc"><i class="fas fa-angle-down"></i></a>
+                        </th>
+                        <th>Email</th>
+                        <th>Phone</th>
+                        <th>City
+                             <a asp-page="/Index" asp-route-searchPhrase="@Model.SearchPhrase" asp-route-sortColumn="City" asp-route-sortOrder="asc"><i class="fas fa-angle-up"></i></a>
+                             <a asp-page="/Index" asp-route-searchPhrase="@Model.SearchPhrase" asp-route-sortColumn="City" asp-route-sortOrder="desc"><i class="fas fa-angle-down"></i></a>
+                        </th>
+                        <th>Country Code
+                            <a asp-page="/Index" asp-route-searchPhrase="@Model.SearchPhrase" asp-route-sortColumn="CountryCode" asp-route-sortOrder="asc"><i class="fas fa-angle-up"></i></a>
+                            <a asp-page="/Index" asp-route-searchPhrase="@Model.SearchPhrase" asp-route-sortColumn="CountryCode" asp-route-sortOrder="desc"><i class="fas fa-angle-down"></i></a>
+                        </th>
+                        <th>Option</th>
+                    </tr>
+                   
+                        @foreach (var item in Model.Items)
+                        {
+                            <tr>
+                                <td> @item.PersonalNumber</td>
+                                <td> @item.Name</td>
+                                <td> @item.Email</td>
+                                <td> @item.Phone</td>
+                                <td> @item.City</td>
+                                <td> @item.CountryCode</td>
+                                <td>
+                                    <a asp-page="/Customer/ViewCustomer" asp-route-customerId="@item.Id"><i class="fas fa-caret-right"></i></a>
+                                </td>
+                            </tr>
+                        }
+                  
+                </table>
+            </div>
+        </div>
+    </div>
+</body>

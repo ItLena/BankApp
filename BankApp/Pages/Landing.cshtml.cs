@@ -1,6 +1,7 @@
 using BankApp.Services;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.AspNetCore.Mvc.RazorPages;
+using System.ComponentModel.DataAnnotations;
 
 namespace BankApp.Pages
 {
@@ -28,11 +29,16 @@ namespace BankApp.Pages
         public string SortOrder { get; set; }
         public string SortColumn { get; set; }
         public string SearchPhrase { get; set; }
+
+        
+        [DataType(DataType.Date)]
+        public DateTime ActualDate{ get; set; }
         public void OnGet(string sortColumn, string sortOrder, string searchPhrase)
         {
             SearchPhrase = searchPhrase;
             SortColumn= sortColumn;
             SortOrder= sortOrder;
+            ActualDate= DateTime.Now;
 
             if (searchPhrase != null)
             {

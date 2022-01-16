@@ -2,3 +2,96 @@
 @model BankApp.Pages.Customer.EditModel
 @{
 }
+ <link rel="stylesheet" href="~/css/landing.css" asp-append-version="true" />
+  <script src="https://kit.fontawesome.com/607a5ea1bc.js" crossorigin="anonymous"></script> 
+<body>
+<div class ="top-container">
+        <div class = "side_bar">
+            <a asp-action="/Customer/Edit" class="side_link">Add New Customer</a>
+            <a href="#" class="side_link">Registrate new user</a>
+            <a href="#" class="side_link">List all customers</a>
+            <a href="#" class="side_link">Currency rates</a>
+        </div>
+    
+        <div class = "main-container"> 
+
+            <form method = "post">
+                <div class = "form-group">
+                    <label>@Html.DisplayNameFor(x => x.Givenname)</label>
+                    <input asp-for="Givenname" class="form-control" />
+                    <span asp-validation-for="Givenname" class="text-danger"></span>
+                </div>
+                 <div class = "form-group">
+                    <label>@Html.DisplayNameFor(x => x.Surname)</label>
+                    <input asp-for="Surname" class="form-control" />
+                    <span asp-validation-for="Surname" class="text-danger"></span>
+                </div>
+                 <div class = "form-group">
+                    <label>@Html.DisplayNameFor(x => x.Gender)</label>
+                    <input asp-for="Gender" class="form-control" />
+                    <span asp-validation-for="Gender" class="text-danger"></span>
+                </div>
+                 <div class = "form-group">
+                    <label>@Html.DisplayNameFor(x => x.Birthday)</label>
+                    <input asp-for="Birthday" class="form-control" />
+                    <span asp-validation-for="Birthday" class="text-danger"></span>
+                </div>
+                 <div class = "form-group">
+                    <label>@Html.DisplayNameFor(x => x.NationalId)</label>
+                    <input asp-for="NationalId" class="form-control" />
+                    <span asp-validation-for="NationalId" class="text-danger"></span>
+                </div>
+                 <div class = "form-group">
+                    <label>@Html.DisplayNameFor(x => x.Emailaddress)</label>
+                    <input asp-for="Emailaddress" class="form-control" />
+                    <span asp-validation-for="Emailaddress" class="text-danger"></span>
+                </div>
+                <div class = "form-group">
+                    <label>@Html.DisplayNameFor(x => x.Telephonecountrycode)</label>
+                    <input asp-for="Telephonecountrycode" class="form-control" />
+                    <span asp-validation-for="Telephonecountrycode" class="text-danger"></span>
+                </div>
+                 <div class = "form-group">
+                    <label>@Html.DisplayNameFor(x => x.Telephonenumber)</label>
+                    <input asp-for="Telephonenumber" class="form-control" />
+                    <span asp-validation-for="Telephonenumber" class="text-danger"></span>
+                </div>
+                 <div class = "form-group">
+                    <label>@Html.DisplayNameFor(x => x.Streetaddress)</label>
+                    <input asp-for="Streetaddress" class="form-control" />
+                    <span asp-validation-for="Streetaddress" class="text-danger"></span>
+                </div>
+                 <div class = "form-group">
+                    <label>@Html.DisplayNameFor(x => x.Zipcode)</label>
+                    <input asp-for="Zipcode" class="form-control" />
+                    <span asp-validation-for="Zipcode" class="text-danger"></span>
+                </div>
+                 <div class = "form-group">
+                    <label>@Html.DisplayNameFor(x => x.City)</label>
+                    <input asp-for="City" class="form-control" />
+                    <span asp-validation-for="City" class="text-danger"></span>
+                </div>
+                
+                 <div class = "form-group">
+                    <label>@Html.DisplayNameFor(x => x.Country)</label>
+                    <input asp-for="Country" class="form-control" />
+                    <span asp-validation-for="Country" class="text-danger"></span>
+                </div>
+                <div class = "form-group">
+                    <label>@Html.DisplayNameFor(x => x.CountryCode)</label>
+                    <input asp-for="CountryCode" class="form-control" />
+                    <span asp-validation-for="CountryCode" class="text-danger"></span>
+                </div>
+                 
+                    <button type="submit" class="btn-save">Save</button>
+            </form>
+
+            <div class="backToList">
+            <a asp-action="/Customer/CustomerList">Back to List</a>
+            </div>
+
+        </div>
+   </div>
+</body>
+
+     

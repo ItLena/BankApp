@@ -21,12 +21,17 @@ namespace BankApp.Services
                 else
                     query = query.OrderByDescending(r => r.Country);
 
+            if(sortColumn == "CountryCode")
+                if (sortOrder == "asc")
+                query = query.OrderBy(r => r.CountryCode);
+            else
+                query = query.OrderByDescending(r => r.CountryCode);
+
             else if (sortColumn == "Name" || string.IsNullOrEmpty(sortColumn))
                 if (sortOrder == "desc")
                     query = query.OrderByDescending(r => r.Givenname ).ThenBy(r=>r.Surname);
                 else
                     query = query.OrderBy(r => r.Givenname).ThenBy(r=>r.Surname);
-
 
             else if (sortColumn == "City")
                 if (sortOrder == "asc")
@@ -41,6 +46,18 @@ namespace BankApp.Services
         public Customer ViewCustomer(int customerId)
         {
             return _context.Customers.First(c => c.CustomerId == customerId);
+        }
+
+        public int SaveNew(Customer customer)
+        {
+            _context.Customers.Add(customer);
+            _context.SaveChanges();
+            return customer.CustomerId;
+        }
+
+        public void Update(Customer customer)
+        {
+            _context.SaveChanges();
         }
     }
 }
