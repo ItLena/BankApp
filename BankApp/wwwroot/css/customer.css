@@ -64,7 +64,12 @@
     background-color: transparent;
     border: 3px solid #AAD0EC;
     font-size: 18px;
+    color: #000000;
 }
+    .btn-edit a {
+        text-decoration: none;
+        color: #000000;
+    }
 
     .btn-edit:hover {
         background-color: #AAD0EC;

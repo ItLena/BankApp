@@ -7,9 +7,9 @@
 <body>
  <div class ="top-container">
         <div class = "side_bar">
-            <a href="#" class="side_link">Add New Customer</a>
+            <a asp-action="/Customer/Edit" class="side_link">Add New Customer</a>
             <a href="#" class="side_link">Registrate new user</a>
-            <a href="#" class="side_link">List all customers</a>
+            <a href="#" class="side_link">List all accounts</a>
             <a href="#" class="side_link">Currency rates</a>
         </div>
      
@@ -27,18 +27,18 @@
                     <tr>
                         <th>Personal National Number</th>
                         <th>Name 
-                            <a asp-page="/Index" asp-route-searchPhrase="@Model.SearchPhrase" asp-route-sortColumn="Name" asp-route-sortOrder="asc"><i class="fas fa-angle-up"></i></a>
-                            <a asp-page="/Index" asp-route-searchPhrase="@Model.SearchPhrase" asp-route-sortColumn="Name" asp-route-sortOrder="desc"><i class="fas fa-angle-down"></i></a>
+                            <a asp-page="/Customer/Index" asp-route-searchPhrase="@Model.SearchPhrase" asp-route-sortColumn="Name" asp-route-sortOrder="asc"><i class="fas fa-angle-up"></i></a>
+                            <a asp-page="/Customer/Index" asp-route-searchPhrase="@Model.SearchPhrase" asp-route-sortColumn="Name" asp-route-sortOrder="desc"><i class="fas fa-angle-down"></i></a>
                         </th>
                         <th>Email</th>
                         <th>Phone</th>
                         <th>City
-                             <a asp-page="/Index" asp-route-searchPhrase="@Model.SearchPhrase" asp-route-sortColumn="City" asp-route-sortOrder="asc"><i class="fas fa-angle-up"></i></a>
-                             <a asp-page="/Index" asp-route-searchPhrase="@Model.SearchPhrase" asp-route-sortColumn="City" asp-route-sortOrder="desc"><i class="fas fa-angle-down"></i></a>
+                             <a asp-page="/Customer/Index" asp-route-searchPhrase="@Model.SearchPhrase" asp-route-sortColumn="City" asp-route-sortOrder="asc"><i class="fas fa-angle-up"></i></a>
+                             <a asp-page="/Customer/Index" asp-route-searchPhrase="@Model.SearchPhrase" asp-route-sortColumn="City" asp-route-sortOrder="desc"><i class="fas fa-angle-down"></i></a>
                         </th>
                         <th>Country Code
-                            <a asp-page="/Index" asp-route-searchPhrase="@Model.SearchPhrase" asp-route-sortColumn="CountryCode" asp-route-sortOrder="asc"><i class="fas fa-angle-up"></i></a>
-                            <a asp-page="/Index" asp-route-searchPhrase="@Model.SearchPhrase" asp-route-sortColumn="CountryCode" asp-route-sortOrder="desc"><i class="fas fa-angle-down"></i></a>
+                            <a asp-page="/Customer/Index" asp-route-searchPhrase="@Model.SearchPhrase" asp-route-sortColumn="CountryCode" asp-route-sortOrder="asc"><i class="fas fa-angle-up"></i></a>
+                            <a asp-page="/Customer/Index" asp-route-searchPhrase="@Model.SearchPhrase" asp-route-sortColumn="CountryCode" asp-route-sortOrder="desc"><i class="fas fa-angle-down"></i></a>
                         </th>
                         <th>Option</th>
                     </tr>

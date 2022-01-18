@@ -3,18 +3,19 @@
 @{
 }
  <link rel="stylesheet" href="~/css/landing.css" asp-append-version="true" />
+ <link rel="stylesheet" href="~/css/table.css" asp-append-version="true" />
   <script src="https://kit.fontawesome.com/607a5ea1bc.js" crossorigin="anonymous"></script> 
 <body>
 <div class ="top-container">
         <div class = "side_bar">
-            <a asp-action="/Customer/Edit" class="side_link">Add New Customer</a>
+            <a asp-action="/Customer/New" class="side_link">Add New Customer</a>
             <a href="#" class="side_link">Registrate new user</a>
             <a href="#" class="side_link">List all customers</a>
             <a href="#" class="side_link">Currency rates</a>
         </div>
     
         <div class = "main-container"> 
-
+            <h1>Edit the customer</h1>
             <form method = "post">
                 <div class = "form-group">
                     <label>@Html.DisplayNameFor(x => x.Givenname)</label>
@@ -82,16 +83,19 @@
                     <input asp-for="CountryCode" class="form-control" />
                     <span asp-validation-for="CountryCode" class="text-danger"></span>
                 </div>
-                 
+                  <div class = "form-btn-group">
                     <button type="submit" class="btn-save">Save</button>
+                </div>
             </form>
 
             <div class="backToList">
-            <a asp-action="/Customer/CustomerList">Back to List</a>
+            <a asp-action="/Customer/Index">Back to List</a>
             </div>
 
         </div>
    </div>
 </body>
 
-     
+   @section Scripts {
+    @{await Html.RenderPartialAsync("_ValidationScriptsPartial");}
+} 

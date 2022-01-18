@@ -11,11 +11,10 @@ namespace BankApp.Pages.Customer
     public class EditModel : PageModel
     {
         private readonly ICustomerService _customerService;
-        private readonly BankAppDataContext _context;
-        public EditModel(ICustomerService customerService, BankAppDataContext context)
+        
+        public EditModel(ICustomerService customerService)
         {
             _customerService = customerService;
-            _context = context;
         }
 
         public int CustomerId { get; set; }
@@ -62,10 +61,7 @@ namespace BankApp.Pages.Customer
 
         public void OnGet(int customerId)
         {
-            
-            if (customerId != null)
-             {
-                var customer = _customerService.ViewCustomer(customerId);
+            var customer = _customerService.ViewCustomer(customerId);
 
                 CustomerId = customer.CustomerId;
                 Givenname = customer.Givenname;
@@ -81,13 +77,7 @@ namespace BankApp.Pages.Customer
                 CountryCode = customer.CountryCode;
                 Birthday = customer.Birthday;
                 NationalId = customer.NationalId;
-            }
-            else
-            {
-                var customer = _customerService.ViewCustomer(customerId);
-                _context.Customers.Add(customer);
-            }
-        }
+        }  
 
         public IActionResult OnPost(int customerId)
         {
@@ -96,8 +86,6 @@ namespace BankApp.Pages.Customer
             {
                 var customer = _customerService.ViewCustomer(customerId);
 
-                if (customer != null)
-                {
                    customer.CustomerId = CustomerId;
                    customer.Givenname = Givenname;
                    customer.Surname = Surname;
@@ -115,11 +103,6 @@ namespace BankApp.Pages.Customer
 
                     _customerService.Update(customer);
                     return RedirectToPage("Index");
-                }
-                else
-                {
-                    _customerService.SaveNew(customer);
-                }
             }
              return Page();
         }

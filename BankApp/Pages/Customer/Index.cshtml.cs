@@ -59,7 +59,7 @@ namespace BankApp.Pages.Customer
                 {
                     Id = c.CustomerId,
                     PersonalNumber = c.NationalId,
-                    Name = c.Givenname + c.Surname,
+                    Name = c.Givenname + " " + c.Surname,
                     Email = c.Emailaddress,
                     Phone = "(" + c.Telephonecountrycode + ")" + c.Telephonenumber,
                     City = c.City,

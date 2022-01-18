@@ -1,6 +1,6 @@
 {
   "Version": 1,
-  "Hash": "fd7hwj54+SoVrioIGS75ilve80w6VFmApubJyn9gRhA=",
+  "Hash": "k7rmGmh6tfoaPpqOpIo5xrc+vAt6cXfJsPT4nT7WSM0=",
   "Source": "BankApp",
   "BasePath": "_content/BankApp",
   "Mode": "Default",
@@ -1137,6 +1137,23 @@
       "CopyToOutputDirectory": "Never",
       "CopyToPublishDirectory": "PreserveNewest",
       "OriginalItemSpec": "wwwroot\\css\\site.css"
+    },
+    {
+      "Identity": "C:\\Users\\Elena\\Desktop\\Fulstack Utbildning\\Backend\\BankApp\\BankApp\\BankApp\\wwwroot\\css\\table.css",
+      "SourceId": "BankApp",
+      "SourceType": "Discovered",
+      "ContentRoot": "C:\\Users\\Elena\\Desktop\\Fulstack Utbildning\\Backend\\BankApp\\BankApp\\BankApp\\wwwroot\\",
+      "BasePath": "_content/BankApp",
+      "RelativePath": "css/table.css",
+      "AssetKind": "All",
+      "AssetMode": "All",
+      "AssetRole": "Primary",
+      "RelatedAsset": "",
+      "AssetTraitName": "",
+      "AssetTraitValue": "",
+      "CopyToOutputDirectory": "Never",
+      "CopyToPublishDirectory": "PreserveNewest",
+      "OriginalItemSpec": "wwwroot\\css\\table.css"
     },
     {
       "Identity": "C:\\Users\\Elena\\Desktop\\Fulstack Utbildning\\Backend\\BankApp\\BankApp\\BankApp\\wwwroot\\favicon.ico",

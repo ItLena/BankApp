@@ -7,14 +7,12 @@ namespace BankApp.Pages.Customer
 {
     public class ViewCustomerModel : PageModel
     {
-        //private readonly ICustomerService _customerService;
-        //private readonly IAccountService _accountService;
+        private readonly ICustomerService _customerService;
         private readonly BankAppDataContext _context;
 
-        public ViewCustomerModel(ICustomerService customerService, IAccountService accountService, BankAppDataContext context)
+        public ViewCustomerModel(ICustomerService customerService,BankAppDataContext context)
         {
-            //_customerService = customerService;
-            //_accountService = accountService;
+            _customerService = customerService;
             _context = context;
         }
                 
@@ -41,7 +39,7 @@ namespace BankApp.Pages.Customer
 
         public void OnGet(int customerId)
         {
-            var customer = _context.Customers.First(c => c.CustomerId == customerId);
+            var customer = _customerService.ViewCustomer(customerId);
             CustomerId = customer.CustomerId;
             Name = customer.Givenname + " " + customer.Surname;
             Gender = customer.Gender;

@@ -11,6 +11,10 @@ builder.Services.AddDbContext<BankAppDataContext>(options =>
         builder.Configuration.GetConnectionString("DefaultConnection")));
 builder.Services.AddTransient<ICustomerService, CustomerService>();
 builder.Services.AddTransient<IAccountService, AccountService>();
+builder.Services.AddAuthentication().AddCookie("MyCookieAuth", options =>
+{
+    options.Cookie.Name = "MyCookieAuth";
+});
 
 var app = builder.Build();
 

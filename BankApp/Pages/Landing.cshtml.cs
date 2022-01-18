@@ -55,10 +55,6 @@ namespace BankApp.Pages
                     Country = c.Country,
                 }).Where(x => x.FirstName.ToLower().Contains(searchPhrase.ToLower()) || x.LastName.ToLower().Contains(searchPhrase.ToLower()) || x.PersonalNumber.Contains(searchPhrase) || x.Country.ToLower().Contains(searchPhrase.ToLower())).ToList();
             }
-           
-            
         }
-
-
     }
 }
