@@ -15,16 +15,14 @@
        <div class="header">
                 <p class="logo">Nice Bank </p>  
 
-                @if (User.Identity.IsAuthenticated)
-                {
-                    <p class="nav-item">
-                        <a class="nav-link" asp-area="" asp-controller="Home" asp-action="Logout">Logout</a>
-                    </p>
-                }
+               <div class ="login">
+                    <partial name="_LoginPartial"/>
+                </div>
             </div>
     </header>
+    
     <main>  
-        <div>
+         <div>
           @RenderBody()
           </div>
     </main> 

@@ -23,15 +23,14 @@ namespace BankApp.Models
         private void SeedUsers()
         {
             AddUserIfNotExists("stefan.holmberg@systementor.se", "Hejsan123#", new string[] { "Admin" });
-            AddUserIfNotExists("stefan.holmberg@customer.systementor.se", "Hejsan123#", new string[] { "Cashier" });
-            AddUserIfNotExists("elena@gmail.com", "1234", new string[] { "Admin" });
-            AddUserIfNotExists("bordinghaus@gmail.com", "1234", new string[] { "Cashier" });
+            AddUserIfNotExists("stefan.holmberg@customer.systementor.se", "Hejsan123#", new string[] { "Customer" });
+        
         }
 
         private void SeedRoles()
         {
             AddRoleIfNotExisting("Admin");
-            AddRoleIfNotExisting("Cashier");
+            AddRoleIfNotExisting("Customer");
         }
 
         private void AddRoleIfNotExisting(string roleName)
@@ -43,8 +42,6 @@ namespace BankApp.Models
                 _dbContext.SaveChanges();
             }
         }
-
-
         private void AddUserIfNotExists(string userName, string password, string[] roles)
         {
             if (_userManager.FindByEmailAsync(userName).Result != null) return;
@@ -58,6 +55,6 @@ namespace BankApp.Models
             _userManager.CreateAsync(user, password).Wait();
             _userManager.AddToRolesAsync(user, roles).Wait();
         }
-
+        
     }
 }
