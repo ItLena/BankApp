@@ -4,6 +4,7 @@ using Microsoft.AspNetCore.Mvc.RazorPages;
 using System.ComponentModel;
 using System.ComponentModel.DataAnnotations;
 
+
 namespace BankApp.Pages.Customer
 {
     [BindProperties]
@@ -57,10 +58,10 @@ namespace BankApp.Pages.Customer
 
         [DisplayName("Email"), Required, DataType(DataType.EmailAddress)]
         public string? Emailaddress { get; set; }
+
         public void OnGet()
         {
         }
-
         public IActionResult OnPost()
         {
             if (ModelState.IsValid)

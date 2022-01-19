@@ -18,7 +18,13 @@
                     <label asp-for="Password"></label>
                     <input asp-for="Password" class="form-control" />
                     <span asp-validation-for="Password" class="text-danger"></span>
-                </div>
+            </div>
+
+            <div class = "form-group">  
+                    <label asp-for="RememberMe"></label>
+                    <input type="checkbox" asp-for="RememberMe" class = "check-input" />
+            </div>
+
             <div class = "form-btn-group">
                     <button type="submit" class="btn-save">Login</button>
             </div>

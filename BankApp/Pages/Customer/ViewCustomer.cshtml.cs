@@ -34,9 +34,9 @@ namespace BankApp.Pages.Customer
             public decimal Balance { get; set; }
             public string Type { get; set; }
         }
-
+        
         public List<AccountItem> AccountItems { get; set; }
-
+       
         public void OnGet(int customerId)
         {
             var customer = _customerService.ViewCustomer(customerId);
@@ -65,7 +65,7 @@ namespace BankApp.Pages.Customer
             {
                 TotalBalance = item.Balance + TotalBalance;
             }
-           
+
         }
 
        

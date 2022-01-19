@@ -1,17 +1,23 @@
+using BankApp.Models;
 using BankApp.Services;
+using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.AspNetCore.Mvc.RazorPages;
 using System.ComponentModel.DataAnnotations;
 
 namespace BankApp.Pages
 {
+    [Authorize]
     public class LandingModel : PageModel
     {
+        
         private readonly ICustomerService _customerService;
+        private readonly BankAppDataContext _context;
 
-        public LandingModel(ICustomerService customerService)
+        public LandingModel(ICustomerService customerService, BankAppDataContext context)
         {
             _customerService = customerService;
+            _context = context; 
         }
 
         public class Item
@@ -30,7 +36,17 @@ namespace BankApp.Pages
         public string SortColumn { get; set; }
         public string SearchPhrase { get; set; }
 
-        
+        [BindProperty]
+        public int AmmountCustomers { get; set; }
+
+        [BindProperty]
+        public int AmmountAccounts { get; set; }
+
+        [BindProperty]
+        public decimal SumOfAllAccountsBalance { get; set; }
+
+
+
         [DataType(DataType.Date)]
         public DateTime ActualDate{ get; set; }
         public void OnGet(string sortColumn, string sortOrder, string searchPhrase)
@@ -39,6 +55,11 @@ namespace BankApp.Pages
             SortColumn= sortColumn;
             SortOrder= sortOrder;
             ActualDate= DateTime.Now;
+
+            AmmountCustomers = _context.Customers.Select(c => c.CustomerId).Distinct().Count();
+
+            AmmountAccounts = _context.Accounts.Select(c => c.AccountId).Distinct().Count();
+            SumOfAllAccountsBalance = _context.Accounts.Select(c => c.Balance).Sum();
 
             if (searchPhrase != null)
             {
