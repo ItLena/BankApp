@@ -8,19 +8,18 @@ namespace BankApp.Pages.Account
     public class DetailsModel : PageModel
     {
         private readonly IAccountService _accountService;
-        private readonly BankAppDataContext _context;
+        private readonly ITransactionService _transactionService;
 
-        public DetailsModel(IAccountService accountService, BankAppDataContext context)
+        public DetailsModel(IAccountService accountService, ITransactionService transactionService)
         {
             _accountService = accountService;
-            _context = context;
+            _transactionService = transactionService;
         }
 
 
         public int AccountId { get; set; }
         public DateTime Created { get; set; }
         public decimal Balance { get; set; }
-        public decimal Loan { get; set; }
         public decimal TotalBalance { get; set; }
 
 
@@ -29,35 +28,56 @@ namespace BankApp.Pages.Account
             public int TransactionId { get; set; }
             public int AccountId { get; set; }
             public DateTime Date { get; set; }
-            public string Type { get; set; } = null!;
             public string Operation { get; set; } = null!;
             public decimal Amount { get; set; }
-            public decimal Balance { get; set; }
-            public string? Symbol { get; set; }
+            public decimal CurrentBalance { get; set; }
             public string? Bank { get; set; }
-            public string? Account { get; set; }
+            public string? ToAccount { get; set; }
+            public string Comment { get; set; }
         }
 
-        public List<TransactionItem> TransactionItems { get; set; }
+        public List<TransactionItem> TransactionItems { get; set; } 
+        public string SearchPhrase { get; set; }
 
-        public void OnGet(int accountId)
+        public void OnGet(int accountId, string searchPhrase)
         {
             var account = _accountService.ViewAccount(accountId);
             AccountId = account.AccountId;
-            TotalBalance = account.Balance + TotalBalance;
-            
-           
+            Created = account.Created;
+            TotalBalance = account.Balance;
 
-            //AccountItems = (from a in _context.Accounts
-            //                join d in _context.Dispositions on a.AccountId equals d.AccountId
-            //                join c in _context.Customers on d.CustomerId equals c.CustomerId
-            //                where c.CustomerId == customerId
-            //                select new AccountItem
-            //                {
-            //                    AccountId = a.AccountId,
-            //                    Balance = a.Balance,
-            //                    Type = d.Type
-            //                }).ToList();
+            SearchPhrase = searchPhrase;
+
+            if (searchPhrase != null)
+            {
+
+                TransactionItems = _transactionService.GetTransactions()
+                    .Select(t => new TransactionItem
+                    {
+                        Date = t.Date,
+                        Operation = t.Operation,
+                        Amount = t.Amount,
+                        Bank = t.Bank,
+                        ToAccount =t.Account,
+                        Comment = t.Symbol,
+                        CurrentBalance = t.Balance
+                    }).Where(x => x.Comment.ToLower().Contains(searchPhrase.ToLower()) || x.Bank.ToLower().Contains(searchPhrase.ToLower())).ToList();
+            }
+
+            else
+            {
+                TransactionItems = _transactionService.GetTransactions()
+                   .Select(t => new TransactionItem
+                   {
+                       Date = t.Date,
+                       Operation = t.Operation,
+                       Amount = t.Amount,
+                       Bank = t.Bank,
+                       ToAccount = t.Account,
+                       Comment = t.Symbol,
+                       CurrentBalance = t.Balance
+                   }).ToList();
+            }
 
         }
     }

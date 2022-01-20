@@ -2,3 +2,75 @@
 @model BankApp.Pages.Account.DetailsModel
 @{
 }
+<link rel="stylesheet" href="~/css/landing.css" asp-append-version="true" />
+<link rel="stylesheet" href="~/css/customer.css" asp-append-version="true" />
+  <script src="https://kit.fontawesome.com/607a5ea1bc.js" crossorigin="anonymous"></script> 
+<body>
+ <div class ="top-container">
+        <div class = "side_bar">
+            <a asp-page="/Customer/New" class="side_link">Add New Customer</a>
+            <a  class="side_link">Registrate new user</a>
+            <a asp-page="/Customer/Index" class="side_link">List all customers</a>
+            <a href="#" class="side_link">Currency rates</a>
+        </div>
+     
+        <div class = "main-container">
+            <div class = "info_bar summering">
+                <table class = "table sum">
+                    <tr>
+                        <th>Account Id</th>
+                        <th>Created</th>
+                        <th>Total Balance</th>       
+                    </tr>
+                    <tr>
+                        <td>@Model.AccountId</td>
+                        <td>@Model.Created</td>
+                        <td>@Model.TotalBalance</td>
+                    </tr>
+                </table>    
+            </div>
+            <div class = "search_bar">
+                <h2>Search transaction by bank or comment phrase</h2>
+               <form method = "get" asp-action="SearchPhrase" class = "form-search">
+                    <input name="searchPhrase" type="text" placeholder=" Search.." id = "search-box">
+                    <button class = "btn-search" type="submit"><i class="fas fa-search"></i></button>
+                </form>
+            </div>
+
+            <div class = "info_bar customers">
+
+                    <div class = "btn-box">
+                        <button class = "btn-bank">Pay</button>
+                        <button class = "btn-bank">Deposit</button>
+                        <button class = "btn-bank">Withdraw</button>
+                        <button class = "btn-bank">New account</button>
+                    </div>
+
+                <table class="table customer">
+                    <tr>
+                        <th>Date</th>
+                        <th>Operation</th>
+                        <th>Amount</th>
+                        <th>Bank</th>
+                        <th>Account</th>
+                        <th>Comment</th>
+                        <th>Ballance</th>
+                        
+                    </tr>
+                    @foreach (var item in Model.TransactionItems)
+                    {
+                        <tr>
+                            <td> @item.Date</td>
+                            <td> @item.Operation</td>
+                            <td> @item.Amount</td>
+                            <td> @item.Bank</td>
+                            <td> @item.ToAccount</td>
+                            <td> @item.Comment</td>
+                           <td> @item.CurrentBalance</td>
+                        </tr>
+                    }
+                </table>
+            </div>
+        </div>
+    </div>
+</body>
