@@ -1,4 +1,5 @@
 ﻿using BankApp.Models;
+using Microsoft.AspNetCore.Mvc;
 
 namespace BankApp.Services
 {
@@ -11,9 +12,10 @@ namespace BankApp.Services
             _context = context;
         }
         
+        [HttpGet]
         IEnumerable<Transaction> ITransactionService.GetTransactions()
         {
-            return _context.Transactions.OrderByDescending(d => d.Date).ToList();
+            return _context.Transactions.ToList();
         }
     }
 }

@@ -15,8 +15,7 @@ namespace BankApp.Pages.Customer
             _customerService = customerService;
             _context = context;
         }
-                
-         
+               
             public int CustomerId { get; set; }
             public string NationalCode { get; set; }
             public string Gender { get; set; } = null!;

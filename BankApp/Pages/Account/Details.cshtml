@@ -2,18 +2,12 @@
 @model BankApp.Pages.Account.DetailsModel
 @{
 }
-<link rel="stylesheet" href="~/css/landing.css" asp-append-version="true" />
+
 <link rel="stylesheet" href="~/css/customer.css" asp-append-version="true" />
   <script src="https://kit.fontawesome.com/607a5ea1bc.js" crossorigin="anonymous"></script> 
 <body>
  <div class ="top-container">
-        <div class = "side_bar">
-            <a asp-page="/Customer/New" class="side_link">Add New Customer</a>
-            <a  class="side_link">Registrate new user</a>
-            <a asp-page="/Customer/Index" class="side_link">List all customers</a>
-            <a href="#" class="side_link">Currency rates</a>
-        </div>
-     
+            
         <div class = "main-container">
             <div class = "info_bar summering">
                 <table class = "table sum">
@@ -29,13 +23,13 @@
                     </tr>
                 </table>    
             </div>
-            <div class = "search_bar">
+           @* <div class = "search_bar">
                 <h2>Search transaction by bank or comment phrase</h2>
                <form method = "get" asp-action="SearchPhrase" class = "form-search">
                     <input name="searchPhrase" type="text" placeholder=" Search.." id = "search-box">
                     <button class = "btn-search" type="submit"><i class="fas fa-search"></i></button>
                 </form>
-            </div>
+            </div>*@
 
             <div class = "info_bar customers">
 
@@ -68,9 +62,22 @@
                             <td> @item.Comment</td>
                            <td> @item.CurrentBalance</td>
                         </tr>
+                        
                     }
+                     
                 </table>
+                 @{  var jsonStr = System.Text.Json.JsonSerializer.Serialize(Model.TransactionItems);
+                        var tempPageNr = @Model.PageNr + 1;
+                      }
+                    <form class="login-form" method="get" asp-page-handler="Load More">
+                         <input type="hidden" name="page" value="@tempPageNr" />
+                         <input type="hidden" name="jsonData" value="@jsonStr" />
+                         <button>Load More...</button>
+                    </form>
+                 
             </div>
         </div>
     </div>
+   
 </body>
+

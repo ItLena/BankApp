@@ -2,27 +2,31 @@ using BankApp.Models;
 using BankApp.Services;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.AspNetCore.Mvc.RazorPages;
+using System.Text.Json;
+
 
 namespace BankApp.Pages.Account
 {
+    
     public class DetailsModel : PageModel
     {
         private readonly IAccountService _accountService;
         private readonly ITransactionService _transactionService;
+        private readonly BankAppDataContext _context;
 
-        public DetailsModel(IAccountService accountService, ITransactionService transactionService)
+        public DetailsModel(IAccountService accountService, ITransactionService transactionService, BankAppDataContext context)
         {
             _accountService = accountService;
             _transactionService = transactionService;
+            _context = context;
         }
 
-
-        public int AccountId { get; set; }
+        //display info on header (page view)
+        public int AccountId { get; set; }        
         public DateTime Created { get; set; }
-        public decimal Balance { get; set; }
         public decimal TotalBalance { get; set; }
 
-
+        //transaktion list
         public class TransactionItem
         {
             public int TransactionId { get; set; }
@@ -36,37 +40,54 @@ namespace BankApp.Pages.Account
             public string Comment { get; set; }
         }
 
-        public List<TransactionItem> TransactionItems { get; set; } 
-        public string SearchPhrase { get; set; }
+        public List<TransactionItem> TransactionItems { get; set; }
+        public int PageNr { get; set; }
+        public int Size { get; set; }
 
-        public void OnGet(int accountId, string searchPhrase)
+
+        //public void OnGet(int accountId, int pageNr, int size)
+        //{
+        //    var account = _accountService.ViewAccount(accountId);
+        //    AccountId = accountId;
+        //    Created = account.Created;
+        //    TotalBalance = account.Balance;
+        //}
+
+        public async Task OnGetAsync(int page, string jsonData, int accountId)
         {
-            var account = _accountService.ViewAccount(accountId);
-            AccountId = account.AccountId;
-            Created = account.Created;
-            TotalBalance = account.Balance;
+            PageNr = page;
+            List<TransactionItem> transactionItemsTemp;
+            List<TransactionItem> tempTransactionItems;
 
-            SearchPhrase = searchPhrase;
-
-            if (searchPhrase != null)
+            if (jsonData != null)
             {
+                tempTransactionItems = JsonSerializer.Deserialize<List<TransactionItem>>(jsonData);
+                TransactionItems = tempTransactionItems;
+            }
 
+            if (TransactionItems == null)
+            {
                 TransactionItems = _transactionService.GetTransactions()
+                    .Where(t => t.AccountId == accountId)
+                    .OrderByDescending(d => d.Date)
+                    .Take(20)
                     .Select(t => new TransactionItem
                     {
                         Date = t.Date,
                         Operation = t.Operation,
                         Amount = t.Amount,
                         Bank = t.Bank,
-                        ToAccount =t.Account,
+                        ToAccount = t.Account,
                         Comment = t.Symbol,
                         CurrentBalance = t.Balance
-                    }).Where(x => x.Comment.ToLower().Contains(searchPhrase.ToLower()) || x.Bank.ToLower().Contains(searchPhrase.ToLower())).ToList();
+                    }).ToList();
             }
-
             else
             {
-                TransactionItems = _transactionService.GetTransactions()
+                transactionItemsTemp = _transactionService.GetTransactions()
+                   .Where(t => t.AccountId == accountId)
+                   .OrderByDescending(d => d.Date)
+                   .Take(20)
                    .Select(t => new TransactionItem
                    {
                        Date = t.Date,
@@ -77,9 +98,12 @@ namespace BankApp.Pages.Account
                        Comment = t.Symbol,
                        CurrentBalance = t.Balance
                    }).ToList();
-            }
 
+                TransactionItems.AddRange(transactionItemsTemp);
+            }
         }
+
     }
 
 }
+
