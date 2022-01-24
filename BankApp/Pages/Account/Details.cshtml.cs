@@ -7,7 +7,7 @@ using System.Text.Json;
 
 namespace BankApp.Pages.Account
 {
-    
+    [BindProperties]
     public class DetailsModel : PageModel
     {
         private readonly IAccountService _accountService;
@@ -22,7 +22,7 @@ namespace BankApp.Pages.Account
         }
 
         //display info on header (page view)
-        public int AccountId { get; set; }        
+        public int AccountId { get; set; }
         public DateTime Created { get; set; }
         public decimal TotalBalance { get; set; }
 
@@ -39,71 +39,35 @@ namespace BankApp.Pages.Account
             public string? ToAccount { get; set; }
             public string Comment { get; set; }
         }
-
         public List<TransactionItem> TransactionItems { get; set; }
         public int PageNr { get; set; }
         public int Size { get; set; }
 
 
-        //public void OnGet(int accountId, int pageNr, int size)
-        //{
-        //    var account = _accountService.ViewAccount(accountId);
-        //    AccountId = accountId;
-        //    Created = account.Created;
-        //    TotalBalance = account.Balance;
-        //}
-
-        public async Task OnGetAsync(int page, string jsonData, int accountId)
+        public async Task OnGetAsync(int page1, int accountId)
         {
-            PageNr = page;
-            List<TransactionItem> transactionItemsTemp;
-            List<TransactionItem> tempTransactionItems;
+            var account = _accountService.ViewAccount(accountId);
+            AccountId = accountId;
+            Created = account.Created;
+            TotalBalance = account.Balance;
+            PageNr = page1;
+            Size = 20;
 
-            if (jsonData != null)
-            {
-                tempTransactionItems = JsonSerializer.Deserialize<List<TransactionItem>>(jsonData);
-                TransactionItems = tempTransactionItems;
-            }
-
-            if (TransactionItems == null)
-            {
-                TransactionItems = _transactionService.GetTransactions()
-                    .Where(t => t.AccountId == accountId)
-                    .OrderByDescending(d => d.Date)
-                    .Take(20)
-                    .Select(t => new TransactionItem
-                    {
-                        Date = t.Date,
-                        Operation = t.Operation,
-                        Amount = t.Amount,
-                        Bank = t.Bank,
-                        ToAccount = t.Account,
-                        Comment = t.Symbol,
-                        CurrentBalance = t.Balance
-                    }).ToList();
-            }
-            else
-            {
-                transactionItemsTemp = _transactionService.GetTransactions()
-                   .Where(t => t.AccountId == accountId)
-                   .OrderByDescending(d => d.Date)
-                   .Take(20)
-                   .Select(t => new TransactionItem
-                   {
-                       Date = t.Date,
-                       Operation = t.Operation,
-                       Amount = t.Amount,
-                       Bank = t.Bank,
-                       ToAccount = t.Account,
-                       Comment = t.Symbol,
-                       CurrentBalance = t.Balance
-                   }).ToList();
-
-                TransactionItems.AddRange(transactionItemsTemp);
-            }
+            TransactionItems = _transactionService.GetTransactions()
+                .Where(t => t.AccountId == accountId)
+                .OrderByDescending(d => d.Date)
+                .Take(Size * (PageNr + 1))
+                .Select(t => new TransactionItem
+                {
+                    Date = t.Date,
+                    Operation = t.Operation,
+                    Amount = t.Amount,
+                    Bank = t.Bank,
+                    ToAccount = t.Account,
+                    Comment = t.Symbol,
+                    CurrentBalance = t.Balance
+                }).ToList();
         }
-
     }
-
 }
 
