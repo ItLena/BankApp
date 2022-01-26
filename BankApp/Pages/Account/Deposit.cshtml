@@ -2,3 +2,30 @@
 @model BankApp.Pages.Account.DepositModel
 @{
 }
+
+<div class ="top-container">
+            
+        <div class = "main-container"> 
+            <h1>Deposit money</h1>
+            <form method = "post">
+                 <div class = "form-group">
+                    <label>@Html.DisplayNameFor(x => x.Amount)</label>
+                    <input asp-for="Amount" class="form-control" />
+                    <span asp-validation-for="Amount" class="text-danger"></span>
+                </div>
+                  <div class = "form-group">
+                    <label>@Html.DisplayNameFor(x => x.Date)</label>
+                    <input asp-for="Amount" class="form-control" />
+                    <span asp-validation-for="Amount" class="text-danger"></span>
+                </div>
+                  <div class = "form-group">
+                    <label>@Html.DisplayNameFor(x => x.Amount)</label>
+                    <input asp-for="Amount" class="form-control" />
+                    <span asp-validation-for="Amount" class="text-danger"></span>
+                </div>
+                  <div class = "form-btn-group">
+                    <button type="submit" class="btn-save">Withdraw</button>
+                </div>
+            </form>
+        </div>
+   </div>

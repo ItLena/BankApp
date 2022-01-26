@@ -8,14 +8,8 @@
   <script src="https://kit.fontawesome.com/607a5ea1bc.js" crossorigin="anonymous"></script> 
 <body>
 <div class ="top-container">
-        <div class = "side_bar">
-            <a asp-action="/Customer/New" class="side_link">Add New Customer</a>
-            <a href="#" class="side_link">Registrate new user</a>
-            <a href="#" class="side_link">List all customers</a>
-            <a href="#" class="side_link">Currency rates</a>
-        </div>
-    
-        <div class = "main-container"> 
+            
+        <div class = "main-container" id = "big-form"> 
             <h1>Add a new customer</h1>
             <form method = "post">
                 <div class = "form-group">
@@ -29,8 +23,10 @@
                     <span asp-validation-for="Surname" class="text-danger"></span>
                 </div>
                  <div class = "form-group">
-                    <label>@Html.DisplayNameFor(x => x.Gender)</label>
-                    <input asp-for="Gender" class="form-control" />
+                     <label>@Html.DisplayNameFor(x => x.Gender)</label>
+                     @Html.DropDownListFor(m=>m.Gender,
+                         new SelectList(Enum.GetValues(typeof(Genders))),
+                         "Select Gender")
                     <span asp-validation-for="Gender" class="text-danger"></span>
                 </div>
                  <div class = "form-group">
@@ -84,15 +80,18 @@
                     <input asp-for="CountryCode" class="form-control" />
                     <span asp-validation-for="CountryCode" class="text-danger"></span>
                 </div>
+
+                <div class = "form-group">
+                     <label>@Html.DisplayNameFor(x => x.Frequency)</label>
+                      @Html.DropDownListFor(m=>m.Frequency,
+                         new SelectList(Enum.GetValues(typeof(Freqwence))),
+                         "Select frequency")
+                    <span asp-validation-for="Frequency" class="text-danger"></span>
+                </div>
                   <div class = "form-btn-group">
                     <button type="submit" class="btn-save">Save</button>
                 </div>
             </form>
-
-            <div class="backToList">
-            <a asp-action="/Customer/Index">Back to List</a>
-            </div>
-
         </div>
    </div>
 </body>

@@ -51,6 +51,7 @@ namespace BankApp.Services
         public int SaveNew(Customer customer)
         {
             _context.Customers.Add(customer);
+            
             _context.SaveChanges();
             return customer.CustomerId;
         }

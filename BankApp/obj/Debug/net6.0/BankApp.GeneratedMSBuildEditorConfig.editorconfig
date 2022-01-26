@@ -183,8 +183,16 @@ build_metadata.AdditionalFiles.CssScope =
 build_metadata.AdditionalFiles.TargetPath = UGFnZXNcQWNjb3VudFxEZXRhaWxzLmNzaHRtbA==
 build_metadata.AdditionalFiles.CssScope = 
 
+[C:/Users/Elena/Desktop/Fulstack Utbildning/Backend/BankApp/BankApp/BankApp/Pages/Account/NewAccount.cshtml]
+build_metadata.AdditionalFiles.TargetPath = UGFnZXNcQWNjb3VudFxOZXdBY2NvdW50LmNzaHRtbA==
+build_metadata.AdditionalFiles.CssScope = 
+
 [C:/Users/Elena/Desktop/Fulstack Utbildning/Backend/BankApp/BankApp/BankApp/Pages/Account/Transfer.cshtml]
 build_metadata.AdditionalFiles.TargetPath = UGFnZXNcQWNjb3VudFxUcmFuc2Zlci5jc2h0bWw=
+build_metadata.AdditionalFiles.CssScope = 
+
+[C:/Users/Elena/Desktop/Fulstack Utbildning/Backend/BankApp/BankApp/BankApp/Pages/Account/Withdrow.cshtml]
+build_metadata.AdditionalFiles.TargetPath = UGFnZXNcQWNjb3VudFxXaXRoZHJvdy5jc2h0bWw=
 build_metadata.AdditionalFiles.CssScope = 
 
 [C:/Users/Elena/Desktop/Fulstack Utbildning/Backend/BankApp/BankApp/BankApp/Pages/Customer/Edit.cshtml]

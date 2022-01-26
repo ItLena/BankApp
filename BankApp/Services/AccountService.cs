@@ -26,5 +26,13 @@ namespace BankApp.Services
         {
             _context.SaveChanges();
         }
+
+        public int SaveNew(Account account)
+        {
+            _context.Accounts.Add(account);
+            _context.SaveChanges();
+
+            return account.AccountId;
+        }
     }
 }

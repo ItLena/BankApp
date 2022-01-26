@@ -28,9 +28,8 @@
 
                     <div class = "btn-box">
                         <button class = "btn-bank">Pay</button>
-                        <button class = "btn-bank">Deposit</button>
-                        <button class = "btn-bank">Withdraw</button>
-                        <button class = "btn-bank">New account</button>
+                       <button class = "btn-bank"><a asp-page="/Account/Withdrow" asp-route-accountId="@Model.AccountId">Add Account</a>Withdraw</button>
+                        <button class = "btn-bank"><a asp-page="/Account/Deposite" asp-route-customerId="@Model.CustomerId"></a>Add Account</button>
                     </div>
 
                 <table class="table customer">

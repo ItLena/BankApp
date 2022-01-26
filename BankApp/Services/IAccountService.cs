@@ -8,5 +8,6 @@ namespace BankApp.Services
 
         Account ViewAccount(int accountId);
         void Update(Account account);
+        int SaveNew(Account account);
     }
 }

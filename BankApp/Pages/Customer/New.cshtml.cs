@@ -1,27 +1,47 @@
+using BankApp.Models;
 using BankApp.Services;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.AspNetCore.Mvc.RazorPages;
+using Microsoft.AspNetCore.Mvc.Rendering;
 using System.ComponentModel;
 using System.ComponentModel.DataAnnotations;
 
 
 namespace BankApp.Pages.Customer
 {
+    public enum Genders
+    {
+        Male,
+        Female,
+        Underfind
+    }
+
+    public enum Freqwence
+    {
+        Monthly,
+        Weekly
+    }
     [BindProperties]
+  
     public class NewModel : PageModel
     {
         
         private readonly ICustomerService _customerService;
+        private readonly IAccountService _accountService;
+        private readonly BankAppDataContext _context;
 
-        public NewModel(ICustomerService customerService)
+        public NewModel(ICustomerService customerService, IAccountService accountService, BankAppDataContext context)
         {
             _customerService = customerService;
+            _accountService = accountService;
+            _context = context;
         }
 
         public int CustomerId { get; set; }
 
         [DisplayName("Gender"), Required, StringLength(10)]
         public string Gender { get; set; } = null!;
+       
 
         [DisplayName("First Name"), Required, StringLength(50)]
         public string Givenname { get; set; } = null!;
@@ -58,10 +78,18 @@ namespace BankApp.Pages.Customer
 
         [DisplayName("Email"), Required, DataType(DataType.EmailAddress)]
         public string? Emailaddress { get; set; }
+        public int AccountId { get; set; }
+
+        [DisplayName("Account Frequncy"), Required, StringLength(20)]
+        public string Frequency { get; set; }
+
+        public DateTime Created { get; set; }
 
         public void OnGet()
         {
+           
         }
+        
         public IActionResult OnPost()
         {
             if (ModelState.IsValid)
@@ -82,9 +110,30 @@ namespace BankApp.Pages.Customer
                     Birthday = Birthday,
                     NationalId = NationalId,
                 };
-                _customerService.SaveNew(customer);
+                
+                int customerId = _customerService.SaveNew(customer);
+                var account = new Models.Account
+                {
+                    Frequency = Frequency,
+                    Created = DateTime.UtcNow,
+                    Balance = 0
+                };
+               int accountId = _accountService.SaveNew(account);
+
+                var disposition = new Models.Disposition
+                {
+                    CustomerId = customerId,
+                    AccountId = accountId,
+                    Type = "OWNER"
+                };
+                _context.Dispositions.Add(disposition);
+                _context.SaveChanges();
+
                 return RedirectToPage("Index");
+
+
             }
+           
             return Page();
         }
     }

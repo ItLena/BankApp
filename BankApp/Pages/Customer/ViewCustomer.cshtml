@@ -63,10 +63,11 @@
         <h2>Customer Accounts</h2>
 
         <div class = "btn-box">
-            <button class = "btn-bank">Pay</button>
-             <button class = "btn-bank">Deposit</button>
-              <button class = "btn-bank">Withdraw</button>
-               <button class = "btn-bank">New account</button>
+           
+           <form method = "post">  
+               <input type="hidden" name="customerId" value="@Model.CustomerId" />
+               <button type = "submit" class = "btn-bank">Add Account</button>
+           </form>
         </div>
 
         <div class = "info_bar">
@@ -75,6 +76,7 @@
                       <th>Account number</th>
                       <th>Balance</th>   
                       <th>Ownership</th>   
+                      <th></th>
                       <th></th>
                   </tr>
                   @foreach (var item in Model.AccountItems)
@@ -85,8 +87,8 @@
                           <td class = "account-td">@item.Type</td>
                           <td class = "account-td">
                               <a asp-page="/Account/Details" asp-route-accountId="@item.AccountId"><i class="fas fa-caret-right"></i></a>
-                   
                           </td>
+                          
                       </tr>
                   }
               </table>    

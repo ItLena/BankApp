@@ -7,14 +7,8 @@
   <script src="https://kit.fontawesome.com/607a5ea1bc.js" crossorigin="anonymous"></script> 
 <body>
 <div class ="top-container">
-        <div class = "side_bar">
-            <a asp-action="/Customer/New" class="side_link">Add New Customer</a>
-            <a href="#" class="side_link">Registrate new user</a>
-            <a href="#" class="side_link">List all customers</a>
-            <a href="#" class="side_link">Currency rates</a>
-        </div>
-    
-        <div class = "main-container"> 
+            
+        <div class = "main-container" id = "big-form"> 
             <h1>Edit the customer</h1>
             <form method = "post">
                 <div class = "form-group">
@@ -87,11 +81,6 @@
                     <button type="submit" class="btn-save">Save</button>
                 </div>
             </form>
-
-            <div class="backToList">
-            <a asp-action="/Customer/Index">Back to List</a>
-            </div>
-
         </div>
    </div>
 </body>

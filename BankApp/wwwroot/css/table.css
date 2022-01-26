@@ -12,7 +12,15 @@
     flex-direction: column;
     align-items: center;
 }
-
+#big-form {
+    width: 40%;
+    background-color: #E7F0F7;
+    margin: 2%;
+    padding: 2%;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+}
 form {
     width: 30vw;
 }
@@ -26,7 +34,7 @@ h1 {
 }
 .form-btn-group {
     display: flex;
-    justify-content: flex-end;
+    justify-content: center;
     margin: 3%;
 }
 label {

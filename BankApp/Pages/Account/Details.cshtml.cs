@@ -25,6 +25,7 @@ namespace BankApp.Pages.Account
         public int AccountId { get; set; }
         public DateTime Created { get; set; }
         public decimal TotalBalance { get; set; }
+        public int CustomerId { get; set; }
 
         //transaktion list
         public class TransactionItem
@@ -44,8 +45,9 @@ namespace BankApp.Pages.Account
         public int Size { get; set; }
 
 
-        public async Task OnGetAsync(int page1, int accountId)
+        public async Task OnGetAsync(int page1, int accountId, int customerId)
         {
+            CustomerId = customerId;
             var account = _accountService.ViewAccount(accountId);
             AccountId = accountId;
             Created = account.Created;

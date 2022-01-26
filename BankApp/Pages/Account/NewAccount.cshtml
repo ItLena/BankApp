@@ -1,0 +1,33 @@
+﻿@page
+@model BankApp.Pages.Account.NewAccountModel
+@{
+}
+
+<link rel="stylesheet" href="~/css/landing.css" asp-append-version="true" />
+ <link rel="stylesheet" href="~/css/table.css" asp-append-version="true" />
+  <script src="https://kit.fontawesome.com/607a5ea1bc.js" crossorigin="anonymous"></script> 
+<body>
+<div class ="top-container">
+            
+        <div class = "main-container"> 
+            <h1>Add a new account</h1>
+            <form method = "post">
+                <div class = "form-group">
+                    <label>@Html.DisplayNameFor(x => x.Frequency)</label>
+                     @Html.DropDownListFor(m=>m.Frequency,
+                      new SelectList(Enum.GetValues(typeof(Freqwence))),
+                      "Select frequency")
+                    <span asp-validation-for="Frequency" class="text-danger"></span>
+                </div>
+                               
+                  <div class = "form-btn-group">
+                    <button type="submit" class="btn-save">Save</button>
+                </div>
+            </form>
+        </div>
+   </div>
+</body>
+
+@section Scripts {
+    @{await Html.RenderPartialAsync("_ValidationScriptsPartial");}
+}

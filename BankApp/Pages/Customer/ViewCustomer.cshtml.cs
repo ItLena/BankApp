@@ -8,15 +8,17 @@ namespace BankApp.Pages.Customer
     public class ViewCustomerModel : PageModel
     {
         private readonly ICustomerService _customerService;
+        private readonly IAccountService _accountService;
         private readonly BankAppDataContext _context;
 
-        public ViewCustomerModel(ICustomerService customerService,BankAppDataContext context)
+        public ViewCustomerModel(ICustomerService customerService, BankAppDataContext context, IAccountService accountService)
         {
             _customerService = customerService;
             _context = context;
+            _accountService = accountService;
         }
-               
-            public int CustomerId { get; set; }
+        public int AccountId { get; set; }
+        public int CustomerId { get; set; }
             public string NationalCode { get; set; }
             public string Gender { get; set; } = null!;
             public DateTime? Birthday { get; set; }
@@ -63,9 +65,33 @@ namespace BankApp.Pages.Customer
             {
                 TotalBalance = item.Balance + TotalBalance;
             }
-
         }
 
-       
+        public IActionResult OnPost(int customerId)
+        {
+            if (ModelState.IsValid)
+            {
+                var account = new Models.Account
+                {
+                    Frequency = "monthly",
+                    Created = DateTime.UtcNow,
+                    Balance = 0
+                };
+                int accountId = _accountService.SaveNew(account);
+
+                var disposition = new Models.Disposition
+                {
+                    CustomerId = customerId,
+                    AccountId = accountId,
+                    Type = "OWNER"
+                };
+                _context.Dispositions.Add(disposition);
+                _context.SaveChanges();
+                
+            }
+
+            this.OnGet(customerId);
+            return Page();
+        }
     }
 }
