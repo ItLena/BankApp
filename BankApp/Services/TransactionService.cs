@@ -17,5 +17,13 @@ namespace BankApp.Services
         {
             return _context.Transactions.ToList();
         }
+
+       public int SaveNew(Transaction transaction)
+        {
+            _context.Transactions.Add(transaction);
+
+            _context.SaveChanges();
+            return transaction.TransactionId;
+        }
     }
 }

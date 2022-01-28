@@ -41,7 +41,6 @@ namespace BankApp.Pages.Customer
 
         [DisplayName("Gender"), Required, StringLength(10)]
         public string Gender { get; set; } = null!;
-       
 
         [DisplayName("First Name"), Required, StringLength(50)]
         public string Givenname { get; set; } = null!;
@@ -80,7 +79,7 @@ namespace BankApp.Pages.Customer
         public string? Emailaddress { get; set; }
         public int AccountId { get; set; }
 
-        [DisplayName("Account Frequncy"), Required, StringLength(20)]
+        [DisplayName("Account Frequency"), Required, StringLength(20)]
         public string Frequency { get; set; }
 
         public DateTime Created { get; set; }
@@ -89,7 +88,6 @@ namespace BankApp.Pages.Customer
         {
            
         }
-        
         public IActionResult OnPost()
         {
             if (ModelState.IsValid)
@@ -128,12 +126,8 @@ namespace BankApp.Pages.Customer
                 };
                 _context.Dispositions.Add(disposition);
                 _context.SaveChanges();
-
                 return RedirectToPage("Index");
-
-
             }
-           
             return Page();
         }
     }

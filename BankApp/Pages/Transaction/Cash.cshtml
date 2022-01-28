@@ -1,0 +1,53 @@
+﻿@page
+@model BankApp.Pages.Transaction.CashModel
+@{
+}
+<link rel="stylesheet" href="~/css/landing.css" asp-append-version="true" />
+ <link rel="stylesheet" href="~/css/table.css" asp-append-version="true" />
+<div class ="top-container">
+        <div class = "main-container"> 
+            <h1>Deposit/Withdraw cash</h1>
+            <form method = "post">
+                  <div class = "form-group">
+                    <th>@Html.DisplayNameFor(x => x.AccountId)</th>
+                    <td>@Model.AccountId</td>
+              </div>
+             <div class = "form-group">
+                    <th>@Html.DisplayNameFor(x => x.Balance)</th>
+                    <td>@Model.Balance</td>
+                 @*   <input type=hidden asp-for="Balance" class="form-control" />*@
+              </div>
+              <div class = "form-group"> 
+                  <label>@Html.DisplayNameFor(x => x.Type)</label>
+                     @Html.DropDownListFor(m=>m.Type,
+                         new SelectList(Enum.GetValues(typeof(Types))),
+                         "Select type of transaction")
+                    <span asp-validation-for="Type" class="text-danger"></span>
+               </div>
+                 
+               <label>@Html.DisplayNameFor(x => x.Type)</label>
+              @Html.DropDownListFor(m=>m.Operation,
+                         new SelectList(Enum.GetValues(typeof(Operations))),
+                         "Select type of operation")
+                    <span asp-validation-for="Type" class="text-danger"></span>
+                @*<input  asp-for="Operation" class="form-control" />*@
+                  
+                 <div class = "form-group">
+                    <label>@Html.DisplayNameFor(x => x.Amount)</label>
+                    <input asp-for="Amount" class="form-control" />
+                    <span asp-validation-for="Amount" class="text-danger"></span>
+                </div>
+                <div class = "form-group">
+                    <label>@Html.DisplayNameFor(x => x.Comment)</label>
+                    <input asp-for="Comment" class="form-control" />
+                    <span asp-validation-for="Comment" class="text-danger"></span>
+                </div>
+                  <div class = "form-btn-group">
+                    <button type="submit" class="btn-save">Submit</button>
+                </div>
+            </form>
+        </div>
+   </div>
+   @section Scripts {
+    @{await Html.RenderPartialAsync("_ValidationScriptsPartial");}
+   }

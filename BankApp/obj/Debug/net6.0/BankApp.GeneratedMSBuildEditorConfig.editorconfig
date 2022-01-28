@@ -175,24 +175,12 @@ build_metadata.AdditionalFiles.CssScope =
 build_metadata.AdditionalFiles.TargetPath = QXJlYXNcSWRlbnRpdHlcUGFnZXNcX1ZpZXdTdGFydC5jc2h0bWw=
 build_metadata.AdditionalFiles.CssScope = 
 
-[C:/Users/Elena/Desktop/Fulstack Utbildning/Backend/BankApp/BankApp/BankApp/Pages/Account/Deposit.cshtml]
-build_metadata.AdditionalFiles.TargetPath = UGFnZXNcQWNjb3VudFxEZXBvc2l0LmNzaHRtbA==
-build_metadata.AdditionalFiles.CssScope = 
-
 [C:/Users/Elena/Desktop/Fulstack Utbildning/Backend/BankApp/BankApp/BankApp/Pages/Account/Details.cshtml]
 build_metadata.AdditionalFiles.TargetPath = UGFnZXNcQWNjb3VudFxEZXRhaWxzLmNzaHRtbA==
 build_metadata.AdditionalFiles.CssScope = 
 
 [C:/Users/Elena/Desktop/Fulstack Utbildning/Backend/BankApp/BankApp/BankApp/Pages/Account/NewAccount.cshtml]
 build_metadata.AdditionalFiles.TargetPath = UGFnZXNcQWNjb3VudFxOZXdBY2NvdW50LmNzaHRtbA==
-build_metadata.AdditionalFiles.CssScope = 
-
-[C:/Users/Elena/Desktop/Fulstack Utbildning/Backend/BankApp/BankApp/BankApp/Pages/Account/Transfer.cshtml]
-build_metadata.AdditionalFiles.TargetPath = UGFnZXNcQWNjb3VudFxUcmFuc2Zlci5jc2h0bWw=
-build_metadata.AdditionalFiles.CssScope = 
-
-[C:/Users/Elena/Desktop/Fulstack Utbildning/Backend/BankApp/BankApp/BankApp/Pages/Account/Withdrow.cshtml]
-build_metadata.AdditionalFiles.TargetPath = UGFnZXNcQWNjb3VudFxXaXRoZHJvdy5jc2h0bWw=
 build_metadata.AdditionalFiles.CssScope = 
 
 [C:/Users/Elena/Desktop/Fulstack Utbildning/Backend/BankApp/BankApp/BankApp/Pages/Customer/Edit.cshtml]
@@ -229,6 +217,14 @@ build_metadata.AdditionalFiles.CssScope =
 
 [C:/Users/Elena/Desktop/Fulstack Utbildning/Backend/BankApp/BankApp/BankApp/Pages/Shared/_ValidationScriptsPartial.cshtml]
 build_metadata.AdditionalFiles.TargetPath = UGFnZXNcU2hhcmVkXF9WYWxpZGF0aW9uU2NyaXB0c1BhcnRpYWwuY3NodG1s
+build_metadata.AdditionalFiles.CssScope = 
+
+[C:/Users/Elena/Desktop/Fulstack Utbildning/Backend/BankApp/BankApp/BankApp/Pages/Transaction/Cash.cshtml]
+build_metadata.AdditionalFiles.TargetPath = UGFnZXNcVHJhbnNhY3Rpb25cQ2FzaC5jc2h0bWw=
+build_metadata.AdditionalFiles.CssScope = 
+
+[C:/Users/Elena/Desktop/Fulstack Utbildning/Backend/BankApp/BankApp/BankApp/Pages/Transaction/Transfer.cshtml]
+build_metadata.AdditionalFiles.TargetPath = UGFnZXNcVHJhbnNhY3Rpb25cVHJhbnNmZXIuY3NodG1s
 build_metadata.AdditionalFiles.CssScope = 
 
 [C:/Users/Elena/Desktop/Fulstack Utbildning/Backend/BankApp/BankApp/BankApp/Pages/_ViewImports.cshtml]

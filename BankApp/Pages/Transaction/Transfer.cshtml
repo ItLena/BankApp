@@ -1,15 +1,15 @@
 ﻿@page
-@model BankApp.Pages.Account.WithdrowModel
+@model BankApp.Pages.Transaction.TransferModel
 @{
 }
+
 <link rel="stylesheet" href="~/css/landing.css" asp-append-version="true" />
  <link rel="stylesheet" href="~/css/table.css" asp-append-version="true" />
 <div class ="top-container">
-            
         <div class = "main-container"> 
-            <h1>Withdraw money</h1>
+            <h1>Transfer money</h1>
             <form method = "post">
-               <div class = "form-group">
+                  <div class = "form-group">
                     <th>@Html.DisplayNameFor(x => x.AccountId)</th>
                     <td>@Model.AccountId</td>
               </div>
@@ -17,20 +17,29 @@
                     <th>@Html.DisplayNameFor(x => x.Balance)</th>
                     <td>@Model.Balance</td>
               </div>
+               
+             <div class = "form-group">
+                    <label>@Html.DisplayNameFor(x => x.Bank)</label>
+                    <input asp-for="Bank" class="form-control" />
+                    <span asp-validation-for="Bank" class="text-danger"></span>
+                </div>
+                <div class = "form-group">
+                    <label>@Html.DisplayNameFor(x => x.AccountTo)</label>
+                    <input asp-for="AccountTo" class="form-control" />
+                    <span asp-validation-for="AccountTo" class="text-danger"></span>
+                </div>
                  <div class = "form-group">
                     <label>@Html.DisplayNameFor(x => x.Amount)</label>
                     <input asp-for="Amount" class="form-control" />
                     <span asp-validation-for="Amount" class="text-danger"></span>
                 </div>
-                
+                 
                   <div class = "form-btn-group">
-                    <button type="submit" class="btn-save">Withdraw</button>
+                    <button type="submit" class="btn-save">Submit</button>
                 </div>
             </form>
         </div>
    </div>
-
-
-@section Scripts {
+   @section Scripts {
     @{await Html.RenderPartialAsync("_ValidationScriptsPartial");}
-}
+   }

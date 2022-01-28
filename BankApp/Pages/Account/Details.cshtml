@@ -23,15 +23,11 @@
                     </tr>
                 </table>    
             </div>
-          
             <div class = "info_bar customers">
-
                     <div class = "btn-box">
-                        <button class = "btn-bank">Pay</button>
-                       <button class = "btn-bank"><a asp-page="/Account/Withdrow" asp-route-accountId="@Model.AccountId">Add Account</a>Withdraw</button>
-                        <button class = "btn-bank"><a asp-page="/Account/Deposite" asp-route-customerId="@Model.CustomerId"></a>Add Account</button>
+                        <button class = "btn-bank"><a asp-page="/Transaction/Cash" asp-route-accountId="@Model.AccountId">Cash operation</a></button>
+                        <button class = "btn-bank"><a asp-page="/Transaction/Transfer" asp-route-accountId="@Model.AccountId">Transfer money</a></button>
                     </div>
-
                 <table class="table customer">
                     <tr>
                         <th>Date</th>
@@ -40,7 +36,7 @@
                         <th>Bank</th>
                         <th>Account</th>
                         <th>Comment</th>
-                        <th>Ballance</th>
+                        <th>Balance</th>
                     </tr>
                     @foreach (var item in Model.TransactionItems)
                     {
