@@ -6,6 +6,7 @@ using System.ComponentModel.DataAnnotations;
 
 namespace BankApp.Pages.Transaction
 {
+    [BindProperties]
     public class TransferModel : PageModel
     {
         private readonly ITransactionService _transactionService;
@@ -20,36 +21,59 @@ namespace BankApp.Pages.Transaction
         public int TransactionId { get; set; }
         public int AccountId { get; set; }
         public DateTime Date { get; set; }
-
-       
-
-        [DisplayName("Amount to transact"), Required, Range(10, 3000)]
-        public decimal Amount { get; set; }
         public decimal Balance { get; set; }
+        public string Operation { get; set; } = null!;
 
+        [DisplayName("Amount"), Required, Range(10,10000)]
+        public decimal Amount { get; set; }
+        
         [DisplayName("Comment"), StringLength(50)]
         public string? Comment { get; set; }
 
-        [DisplayName("Bank symbol"), StringLength(10)]
+        [DisplayName("Bank name"), StringLength(10)]
         public string? Bank { get; set; }
 
         [DisplayName("Account number"), StringLength(20)]
         public string? AccountTo { get; set; }
 
+        [DisplayName("Type of transaction"), StringLength(20)]
+        public string Type { get; set; }
+
         public void OnGet(int accountId)
         {
-            var account = _accountService.ViewAccount(accountId);
+           var account = _accountService.ViewAccount(accountId);
             AccountId = accountId;
-            Balance = Balance;
+            Balance = account.Balance;
         }
-        public IActionResult OnPost(int accountId)
+        public IActionResult OnPost(int accountId, string operation)
         {
+            var accountSaldo = _accountService.ViewAccount(accountId);
+            Balance = accountSaldo.Balance;
+            Operation = operation.Replace("_", " ");
+
             if (ModelState.IsValid)
             {
+                if (Type == "Credit")
+                {
+                    Balance = Balance + Amount;
+                }
+                else
+                {
+                    if (Amount > Balance)
+                    {
+                        ModelState.AddModelError("Amount", "Amount is more than balance");
+                        return Page();
+                    }
+                    else
+                    {
+                        Balance = Balance - Amount;
+                        Amount *= -1; 
+                    }
+                }
                 var transaction = new Models.Transaction
                 {
-                    Operation = "Collection from Another Bank",
-                    Type = "Credit",
+                    Operation = Operation,
+                    Type = Type,
                     Amount = Amount,
                     Bank = Bank,
                     Date = DateTime.UtcNow,
@@ -60,17 +84,25 @@ namespace BankApp.Pages.Transaction
                 };
                 int transactionId = _transactionService.SaveNew(transaction);
 
-                var account = new Models.Account
-                {
-                    AccountId = transaction.AccountId,
-                    Balance = transaction.Balance
-                };
-                accountId = _accountService.SaveNew(account);
+                var account = _accountService.ViewAccount(accountId);
 
-                return RedirectToPage("/Account/Details");
+                account.AccountId = transaction.AccountId;
+                account.Balance = transaction.Balance;
+
+                _accountService.Update(account);
+
+                return RedirectToPage("/Account/Details", new { accountId = AccountId });
 
             }
-            return Page();
+            else
+            {
+                var errors = ModelState
+                .Where(x => x.Value.Errors.Count > 0)
+                .Select(x => new { x.Key, x.Value.Errors })
+                .ToArray();
+
+            }
+                return Page();
         }
     }
 }

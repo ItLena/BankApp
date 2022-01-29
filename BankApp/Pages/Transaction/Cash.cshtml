@@ -15,23 +15,27 @@
              <div class = "form-group">
                     <th>@Html.DisplayNameFor(x => x.Balance)</th>
                     <td>@Model.Balance</td>
-                 @*   <input type=hidden asp-for="Balance" class="form-control" />*@
               </div>
               <div class = "form-group"> 
                   <label>@Html.DisplayNameFor(x => x.Type)</label>
                      @Html.DropDownListFor(m=>m.Type,
                          new SelectList(Enum.GetValues(typeof(Types))),
-                         "Select type of transaction")
+                         "Select type of transaction", new {@class="form-control"})
                     <span asp-validation-for="Type" class="text-danger"></span>
                </div>
-                 
-               <label>@Html.DisplayNameFor(x => x.Type)</label>
-              @Html.DropDownListFor(m=>m.Operation,
-                         new SelectList(Enum.GetValues(typeof(Operations))),
-                         "Select type of operation")
-                    <span asp-validation-for="Type" class="text-danger"></span>
-                @*<input  asp-for="Operation" class="form-control" />*@
-                  
+              
+            @{
+                var tempOperation = "";
+                if (@Model.Type == "Credit")
+                {
+                    tempOperation = "Credit_In_Cash";
+                }
+                else
+                {
+                    tempOperation = "Withdrawal_In_Cash";
+                }
+            }
+            <input type="hidden" name = "operation" value="@tempOperation" />
                  <div class = "form-group">
                     <label>@Html.DisplayNameFor(x => x.Amount)</label>
                     <input asp-for="Amount" class="form-control" />

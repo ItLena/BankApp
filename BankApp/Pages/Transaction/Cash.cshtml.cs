@@ -11,11 +11,7 @@ namespace BankApp.Pages.Transaction
         Credit,
         Debit
     }
-    public enum Operations
-    {
-        CreditInCash,        
-        WithdrawalInCash
-    }
+    
     [BindProperties]
     public class CashModel : PageModel
     {
@@ -42,7 +38,7 @@ namespace BankApp.Pages.Transaction
         public decimal Amount { get; set; }
         public decimal Balance { get; set; }
 
-        [DisplayName("Comment"), StringLength(250)]
+        [DisplayName("Comment"), StringLength(50)]
         public string? Comment { get; set; }
 
         public void OnGet(int accountId)
@@ -51,11 +47,11 @@ namespace BankApp.Pages.Transaction
             AccountId = accountId;
             Balance = account.Balance;
         }
-        public IActionResult OnPost(int accountId)
+        public IActionResult OnPost(int accountId, string operation)
         {
             var accountSaldo = _accountService.ViewAccount(accountId);
             Balance = accountSaldo.Balance;
-            
+            Operation = operation.Replace("_", " ");
 
             if (ModelState.IsValid)
             {
@@ -65,18 +61,20 @@ namespace BankApp.Pages.Transaction
                 }
                 else
                 {
-                    if (Amount >= Balance)
+                    if (Amount > Balance)
                     {
-                        ModelState.AddModelError("Amount", "Amount is more than ballance");
+                        ModelState.AddModelError("Amount", "Amount is more than balance");
+                        return Page();
                     }
                     else
                     {
                         Balance = Balance - Amount;
+                        Amount *= -1;
                     }
                 }
                 var transaction = new Models.Transaction
                 {
-                    Operation = Operation/*.Split(' ').ToString()*/,/*(Type == "Credit"? "Credit in Cash" : "Withdrawal in Cash")*/ 
+                    Operation = Operation,
                     Type = Type,
                     Amount = Amount,
                     Date = DateTime.UtcNow,

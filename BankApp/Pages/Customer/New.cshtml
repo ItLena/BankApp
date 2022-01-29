@@ -26,7 +26,7 @@
                      <label>@Html.DisplayNameFor(x => x.Gender)</label>
                      @Html.DropDownListFor(m=>m.Gender,
                          new SelectList(Enum.GetValues(typeof(Genders))),
-                         "Select Gender")
+                         "Select Gender", new {@class="form-control"})
                     <span asp-validation-for="Gender" class="text-danger"></span>
                 </div>
                  <div class = "form-group">
@@ -85,7 +85,7 @@
                      <label>@Html.DisplayNameFor(x => x.Frequency)</label>
                       @Html.DropDownListFor(m=>m.Frequency,
                          new SelectList(Enum.GetValues(typeof(Freqwence))),
-                         "Select frequency")
+                         "Select frequency for creating account", new {@class="form-control"})
                     <span asp-validation-for="Frequency" class="text-danger"></span>
                 </div>
                   <div class = "form-btn-group">

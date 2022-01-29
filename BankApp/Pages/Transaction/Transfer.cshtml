@@ -17,7 +17,25 @@
                     <th>@Html.DisplayNameFor(x => x.Balance)</th>
                     <td>@Model.Balance</td>
               </div>
-               
+               <div class = "form-group"> 
+                  <label>@Html.DisplayNameFor(x => x.Type)</label>
+                     @Html.DropDownListFor(m=>m.Type, 
+                         new SelectList(Enum.GetValues(typeof(Types))),
+                         "Select type of transaction", new {@class="form-control"})
+                    <span asp-validation-for="Type" class="text-danger"></span>
+               </div>
+                @{
+                var tempOperation = "";
+                if (@Model.Type == "Credit")
+                {
+                    tempOperation = "Collection_from_Another_Bank";
+                }
+                else
+                {
+                    tempOperation = "Remittance_to_Another_Bank";
+                }
+            }
+            <input type="hidden" name = "operation" value="@tempOperation" />
              <div class = "form-group">
                     <label>@Html.DisplayNameFor(x => x.Bank)</label>
                     <input asp-for="Bank" class="form-control" />
@@ -33,7 +51,11 @@
                     <input asp-for="Amount" class="form-control" />
                     <span asp-validation-for="Amount" class="text-danger"></span>
                 </div>
-                 
+                  <div class = "form-group">
+                    <label>@Html.DisplayNameFor(x => x.Comment)</label>
+                    <input asp-for="Comment" class="form-control" />
+                    <span asp-validation-for="Comment" class="text-danger"></span>
+                </div>
                   <div class = "form-btn-group">
                     <button type="submit" class="btn-save">Submit</button>
                 </div>
