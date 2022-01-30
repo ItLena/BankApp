@@ -3,36 +3,26 @@
 @{
     ViewData["Title"] = "Home page";
 }
-@*<link rel="stylesheet" href="~/css/landing.css" asp-append-version="true" />*@
+<meta name="viewport" content="width=device-width, initial-scale=1.0" />
 <link rel="stylesheet" href="~/css/table.css" asp-append-version="true" />
 @using Microsoft.AspNetCore.Identity
 
 @inject SignInManager<IdentityUser> SignInManager
 @inject UserManager<IdentityUser> UserManager
 <div  class ="top-container">   
- <div class ="main-container">   
-@if (SignInManager.IsSignedIn(User))
-{ 
-   
-    <a id="manage" class="nav-link text-dark" asp-area="Identity" asp-page="/Account/Manage/Index" title="Manage">Hello @UserManager.GetUserName(User)!</a>
-   
-  
-   <h1>
-        <a asp-page="/Landing">Open App</a>
-   </h1>
+     <div class ="main-container">   
+    @if (SignInManager.IsSignedIn(User))
+    { 
+         <p> <a asp-area="Identity" asp-page="/Account/Manage/Index" title="Manage">Hello @UserManager.GetUserName(User)!</a></p>
+
+       <h1><a asp-page="/Landing">Open App</a></h1>
     
-       @* <form  class="form-btn-group" asp-area="Identity" asp-page="/Account/Logout" asp-route-returnUrl="@Url.Page("/Index", new { area = "" })">
-            <button id="logout" type="submit" class="btn-save">Logout</button>
-        </form>*@
-} 
-else
-{
-    @*<h1>
-        <a class="nav-link text-dark" id="register" asp-area="Identity" asp-page="/Account/Register">Register</a>
-  </h1>*@
- <h1>
-        <a class="nav-link text-dark" id="login" asp-area="Identity" asp-page="/Account/Login">Login</a>
-    </h1>
-}
-</div>
+    } 
+    else
+    {
+        <h1>
+            <a class="nav-link text-dark" id="login" asp-area="Identity" asp-page="/Account/Login">Login</a>
+        </h1>
+    }
+    </div>
 </div>

@@ -45,16 +45,27 @@ namespace BankApp.Pages
         [BindProperty]
         public decimal SumOfAllAccountsBalance { get; set; }
 
-
-
         [DataType(DataType.Date)]
         public DateTime ActualDate{ get; set; }
-        public void OnGet(string sortColumn, string sortOrder, string searchPhrase)
+
+        [BindProperty(SupportsGet = true)]
+        public int CurrentPage { get; set; } = 1;
+        public int Count { get; set; }
+        public int PageSize { get; set; } = 10;
+
+        public int TotalPages => (int)Math.Ceiling(decimal.Divide(Count, PageSize));
+
+
+        public void OnGet(string sortColumn, string sortOrder, string searchPhrase, int pageSize, int currentPage)
         {
             SearchPhrase = searchPhrase;
             SortColumn= sortColumn;
             SortOrder= sortOrder;
             ActualDate= DateTime.Now;
+
+            CurrentPage = currentPage;
+            PageSize = pageSize;
+            Count = _customerService.GetCount();
 
             AmmountCustomers = _context.Customers.Select(c => c.CustomerId).Distinct().Count();
 
@@ -63,7 +74,7 @@ namespace BankApp.Pages
 
             if (searchPhrase != null)
             {
-                Items = _customerService.GetCustomers(sortColumn, sortOrder)
+                Items = _customerService.GetCustomers(sortColumn, sortOrder, pageSize, currentPage)
                 .Select(c => new Item
                 {
                     Id = c.CustomerId,

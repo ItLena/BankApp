@@ -2,6 +2,7 @@
 @model BankApp.Pages.Customer.IndexModel
 @{
 }
+<meta name="viewport" content="width=device-width, initial-scale=1.0" />
 <link rel="stylesheet" href="~/css/landing.css" asp-append-version="true" />
   <script src="https://kit.fontawesome.com/607a5ea1bc.js" crossorigin="anonymous"></script> 
 <body>
@@ -22,43 +23,75 @@
                 </form>
             </div>
 
-            <div class = "info_bar customers">
+            <div class="info_bar customers">
                 <table class="table customer">
                     <tr>
                         <th>Personal National Number</th>
-                        <th>Name 
+                        <th>
+                            Name
                             <a asp-page="/Customer/Index" asp-route-searchPhrase="@Model.SearchPhrase" asp-route-sortColumn="Name" asp-route-sortOrder="asc"><i class="fas fa-angle-up"></i></a>
                             <a asp-page="/Customer/Index" asp-route-searchPhrase="@Model.SearchPhrase" asp-route-sortColumn="Name" asp-route-sortOrder="desc"><i class="fas fa-angle-down"></i></a>
                         </th>
                         <th>Email</th>
                         <th>Phone</th>
-                        <th>City
-                             <a asp-page="/Customer/Index" asp-route-searchPhrase="@Model.SearchPhrase" asp-route-sortColumn="City" asp-route-sortOrder="asc"><i class="fas fa-angle-up"></i></a>
-                             <a asp-page="/Customer/Index" asp-route-searchPhrase="@Model.SearchPhrase" asp-route-sortColumn="City" asp-route-sortOrder="desc"><i class="fas fa-angle-down"></i></a>
+                        <th>
+                            City
+                            <a asp-page="/Customer/Index" asp-route-searchPhrase="@Model.SearchPhrase" asp-route-sortColumn="City" asp-route-sortOrder="asc"><i class="fas fa-angle-up"></i></a>
+                            <a asp-page="/Customer/Index" asp-route-searchPhrase="@Model.SearchPhrase" asp-route-sortColumn="City" asp-route-sortOrder="desc"><i class="fas fa-angle-down"></i></a>
                         </th>
-                        <th>Country Code
+                        <th>
+                            Country Code
                             <a asp-page="/Customer/Index" asp-route-searchPhrase="@Model.SearchPhrase" asp-route-sortColumn="CountryCode" asp-route-sortOrder="asc"><i class="fas fa-angle-up"></i></a>
                             <a asp-page="/Customer/Index" asp-route-searchPhrase="@Model.SearchPhrase" asp-route-sortColumn="CountryCode" asp-route-sortOrder="desc"><i class="fas fa-angle-down"></i></a>
                         </th>
                         <th>Option</th>
                     </tr>
-                   
-                        @foreach (var item in Model.Items)
+
+                    @foreach (var item in Model.Items)
+                    {
+                        <tr>
+                            <td> @item.PersonalNumber</td>
+                            <td> @item.Name</td>
+                            <td> @item.Email</td>
+                            <td> @item.Phone</td>
+                            <td> @item.City</td>
+                            <td> @item.CountryCode</td>
+                            <td>
+                                <a asp-page="/Customer/ViewCustomer" asp-route-customerId="@item.Id"><i class="fas fa-caret-right"></i></a>
+                            </td>
+                        </tr>
+                    }
+            </table>
+                <div class = "paging">
+                        @if (Model.CurrentPage > 1)
                         {
-                            <tr>
-                                <td> @item.PersonalNumber</td>
-                                <td> @item.Name</td>
-                                <td> @item.Email</td>
-                                <td> @item.Phone</td>
-                                <td> @item.City</td>
-                                <td> @item.CountryCode</td>
-                                <td>
-                                    <a asp-page="/Customer/ViewCustomer" asp-route-customerId="@item.Id"><i class="fas fa-caret-right"></i></a>
-                                </td>
-                            </tr>
+                            <a asp-route-currentPage="@(Model.CurrentPage - 1)" 
+                               asp-route-sortOrder="@(Model.SortOrder)" 
+                               asp-route-sortColumn="@(Model.SortColumn)" 
+                               asp-page="Customer/Index">Prev</a>
                         }
-                </table>
+                             <h4>  Showing @Model.CurrentPage of @Model.Count</h4>
+                      
+                    
+                   
+                        @if (Model.CurrentPage < Model.Count)
+                        {
+                            <a asp-route-currentPage="@(Model.CurrentPage + 1)"
+                               asp-route-sortOrder="@(Model.SortOrder)" 
+                               asp-route-sortColumn="@(Model.SortColumn)" 
+                               asp-page="/Customer/Index">Next</a>
+                        }
+                  </div>
             </div>
+            
+            @*<ul >
+                        @for (var i = 1; i <= Model.Count; i++)
+                        {
+                            <li class="page-item @(i == Model.CurrentPage ? "active" : "")">
+                                <a asp-page="/Customer/Index"  asp-route-currentPage="@Model.CurrentPage">@i</a>
+                            </li>
+                        }
+                    </ul>*@
         </div>
     </div>
 </body>

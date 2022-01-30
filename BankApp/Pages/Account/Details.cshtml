@@ -1,33 +1,41 @@
 ﻿@page
 @model BankApp.Pages.Account.DetailsModel
-@{
-}
+@{ }
+<meta name="viewport" content="width=device-width, initial-scale=1.0" />
 
-<link rel="stylesheet" href="~/css/customer.css" asp-append-version="true" />
-  <script src="https://kit.fontawesome.com/607a5ea1bc.js" crossorigin="anonymous"></script> 
+<link rel="stylesheet" href="~/css/landing.css" asp-append-version="true" />
+<script src="https://kit.fontawesome.com/607a5ea1bc.js" crossorigin="anonymous"></script>
 <body>
- <div class ="top-container">
-            
-        <div class = "main-container">
-            <div class = "info_bar summering">
-                <table class = "table sum">
+    <div class="top-container">
+        <div class="side_bar">
+            <a asp-page="/Customer/New" class="side_link">Add New Customer</a>
+            <a class="side_link">Registrate new user</a>
+            <a asp-page="/Customer/Index" class="side_link">List all customers</a>
+            <a href="#" class="side_link">Currency rates</a>
+        </div>
+
+        <div class="main-container">
+            <div class="info_bar summering">
+                <table class="table sum">
                     <tr>
                         <th>Account Id</th>
                         <th>Created</th>
-                        <th>Total Balance</th>       
+                        <th>Total Balance</th>
                     </tr>
                     <tr>
                         <td>@Model.AccountId</td>
                         <td>@Model.Created</td>
                         <td>@Model.TotalBalance</td>
                     </tr>
-                </table>    
+                </table>
             </div>
-            <div class = "info_bar customers">
-                    <div class = "btn-box">
-                        <button class = "btn-bank"><a asp-page="/Transaction/Cash" asp-route-accountId="@Model.AccountId">Cash operation</a></button>
-                        <button class = "btn-bank"><a asp-page="/Transaction/Transfer" asp-route-accountId="@Model.AccountId">Transfer money</a></button>
-                    </div>
+
+            <div class="info_bar customers">
+                <div class="btn-box">
+                    <button class="btn-bank"><a asp-page="/Transaction/Cash" asp-route-accountId="@Model.AccountId">Cash operation</a></button>
+                    <button class="btn-bank"><a asp-page="/Transaction/Transfer" asp-route-accountId="@Model.AccountId">Transfer money</a></button>
+                </div>
+
                 <table class="table customer">
                     <tr>
                         <th>Date</th>
@@ -40,32 +48,31 @@
                     </tr>
                     @foreach (var item in Model.TransactionItems)
                     {
-                        <tr>
-                            <td> @item.Date</td>
-                            <td> @item.Operation</td>
-                            <td> @item.Amount</td>
-                            <td> @item.Bank</td>
-                            <td> @item.ToAccount</td>
-                            <td> @item.Comment</td>
-                           <td> @item.CurrentBalance</td>
-                        </tr>
-                    }
-                     
+                    <tr>
+                        <td> @item.Date</td>
+                        <td> @item.Operation</td>
+                        <td> @item.Amount</td>
+                        <td> @item.Bank</td>
+                        <td> @item.ToAccount</td>
+                        <td> @item.Comment</td>
+                        <td> @item.CurrentBalance</td>
+                    </tr>
+                     }
                 </table>
-                @{
-                    var tempPageNr = @Model.PageNr + 1;
-                    var tempAccountId = @Model.AccountId;
-                }
-                
-                    <form class="login-form" method="get" asp-page-handler="Load More">
-                         <input type="hidden" name="page1" value="@tempPageNr" />
-                         <input type="hidden" name="accountId" value="@tempAccountId" />
-                         <button>Load More...</button>
-                    </form>
-             
+                @{ var tempPageNr = @Model.PageNr + 1;
+                    var tempAccountId = @Model.AccountId; }
+
+                <form class="login-form" method="get" asp-page-handler="Load More">
+                    <input type="hidden" name="page1" value="@tempPageNr" />
+                    <input type="hidden" name="accountId" value="@tempAccountId" />
+                    <button>Load More...</button>
+                </form>
+
             </div>
         </div>
     </div>
-   
 </body>
 
+@section Scripts {
+    @{await Html.RenderPartialAsync("_ValidationScriptsPartial");}
+}

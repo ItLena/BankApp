@@ -30,16 +30,27 @@ namespace BankApp.Pages.Customer
         public string SortColumn { get; set; }
         public string SearchPhrase { get; set; }
 
-        public void OnGet(string sortColumn, string sortOrder, string searchPhrase)
+        [BindProperty(SupportsGet = true)]
+        public int CurrentPage { get; set; } = 1;
+        public int Count { get; set; }
+        public int PageSize { get; set; }
+
+        public int TotalPages => (int)Math.Ceiling(decimal.Divide(Count, PageSize));
+
+        public void OnGet(string sortColumn, string sortOrder, string searchPhrase, int pageSize, int currentPage)
         {
             SearchPhrase = searchPhrase;
             SortColumn = sortColumn;
             SortOrder = sortOrder;
+            CurrentPage = currentPage;
+            pageSize = 50;
+            PageSize = pageSize;
+            
 
             if (searchPhrase != null)
             {
 
-            Items = _customerService.GetCustomers(sortColumn, sortOrder)
+           Items =  _customerService.GetCustomers(sortColumn, sortOrder, pageSize, currentPage)
                 .Select(c => new Item
                 {
                     Id = c.CustomerId,
@@ -49,12 +60,14 @@ namespace BankApp.Pages.Customer
                     Phone = "(" + c.Telephonecountrycode + ")" + c.Telephonenumber,
                     City = c.City,
                     CountryCode = c.CountryCode,
-                }).Where(x => x.Name.ToLower().Contains(searchPhrase.ToLower()) || x.PersonalNumber.Contains(searchPhrase) || x.CountryCode.ToLower().Contains(searchPhrase.ToLower()) || x.City.ToLower().Contains(searchPhrase.ToLower())).ToList();
+                }).Where(x => x.Name.ToLower().Contains(searchPhrase.ToLower()) || x.PersonalNumber.Contains(searchPhrase) || x.CountryCode.ToLower().Contains(searchPhrase.ToLower()) || x.City.ToLower().Contains(searchPhrase.ToLower()))
+                .Skip((currentPage - 1) * pageSize).Take(pageSize)
+                .ToList();
              }
 
             else
             {
-                Items = _customerService.GetCustomers(sortColumn, sortOrder)
+                Items = _customerService.GetCustomers(sortColumn, sortOrder, pageSize, currentPage)
                 .Select(c => new Item
                 {
                     Id = c.CustomerId,
@@ -64,8 +77,12 @@ namespace BankApp.Pages.Customer
                     Phone = "(" + c.Telephonecountrycode + ")" + c.Telephonenumber,
                     City = c.City,
                     CountryCode = c.CountryCode,
-                }).ToList();
+                })
+                .Skip((currentPage - 1) * pageSize).Take(pageSize)
+                .ToList();
             }
+
+             Count =  _customerService.GetCount();
         }
     }
 }

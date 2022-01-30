@@ -11,36 +11,53 @@ namespace BankApp.Services
             _context = context;
         }
 
-        public IEnumerable<Customer> GetCustomers(string sortColumn, string sortOrder)
+        public IEnumerable<Customer> GetCustomers(string sortColumn, string sortOrder, int pageSize, int currentPage)
         {
             var query = _context.Customers.AsQueryable();
 
             if (sortColumn == "Country")
+            {
                 if (sortOrder == "asc")
+                {
                     query = query.OrderBy(r => r.Country);
+                } 
                 else
+                {
                     query = query.OrderByDescending(r => r.Country);
+                }
+            } 
 
             if(sortColumn == "CountryCode")
-                if (sortOrder == "asc")
-                query = query.OrderBy(r => r.CountryCode);
-            else
-                query = query.OrderByDescending(r => r.CountryCode);
+            {
+               if (sortOrder == "asc")
+               {
+                    query = query.OrderBy(r => r.CountryCode);
+               }
+                
+               else
+               {
+                    query = query.OrderByDescending(r => r.CountryCode);
+               }
+                
+            }
 
             else if (sortColumn == "Name" || string.IsNullOrEmpty(sortColumn))
+            {
                 if (sortOrder == "desc")
                     query = query.OrderByDescending(r => r.Givenname ).ThenBy(r=>r.Surname);
                 else
                     query = query.OrderBy(r => r.Givenname).ThenBy(r=>r.Surname);
-
+            }
+               
             else if (sortColumn == "City")
+            {
                 if (sortOrder == "asc")
                     query = query.OrderBy(r => r.City);
                 else
                     query = query.OrderByDescending(r => r.City);
-
+            }
+          
             return query.ToList();
-
         }
 
         public Customer ViewCustomer(int customerId)
@@ -59,6 +76,12 @@ namespace BankApp.Services
         public void Update(Customer customer)
         {
             _context.SaveChanges();
+        }
+
+        public int GetCount()
+        {
+            var data = _context.Customers.Count();
+            return data;
         }
     }
 
