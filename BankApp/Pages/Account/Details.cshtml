@@ -4,6 +4,7 @@
 <meta name="viewport" content="width=device-width, initial-scale=1.0" />
 
 <link rel="stylesheet" href="~/css/landing.css" asp-append-version="true" />
+
 <script src="https://kit.fontawesome.com/607a5ea1bc.js" crossorigin="anonymous"></script>
 <body>
     <div class="top-container">
@@ -30,12 +31,12 @@
                 </table>
             </div>
 
-            <div class="info_bar customers">
-                <div class="btn-box">
+            <div class="btn-box">
                     <button class="btn-bank"><a asp-page="/Transaction/Cash" asp-route-accountId="@Model.AccountId">Cash operation</a></button>
                     <button class="btn-bank"><a asp-page="/Transaction/Transfer" asp-route-accountId="@Model.AccountId">Transfer money</a></button>
                 </div>
 
+            <div class="info_bar customers">
                 <table class="table customer">
                     <tr>
                         <th>Date</th>

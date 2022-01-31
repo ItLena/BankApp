@@ -9,9 +9,9 @@
  <div class ="top-container">
         <div class = "side_bar">
             <a asp-page="/Customer/New" class="side_link">Add New Customer</a>
-            <a  class="side_link">Registrate new user</a>
+            <a asp-area="Identity" asp-page="/Account/Register" class="side_link">Registrate new user</a>
             <a asp-page="/Customer/Index" class="side_link">List all customers</a>
-            <a href="#" class="side_link">Currency rates</a>
+            <a href="https://www.forex.se/valuta/aktuella-kurser" class="side_link">Currency rates</a>
         </div>
      
         <div class = "main-container">
@@ -38,17 +38,17 @@
             <div class = "info_bar data">
                 <table class = "table data">
                    <tr>
-                    <td>Transaktions</td>
+                    <td>Amount transaktions last 24 h</td>
                     <td>SEK 30000000</td>
                    <td><a href=""> <i class="fas fa-caret-right"></i></a></td> 
                     </tr>
                 <tr>
-                     <td>Withdrows</td>
+                     <td>Sum of credits last 24 h</td>
                     <td>SEK 63980000</td>
                     <td><a><i class="fas fa-caret-right"></i></a></td> 
                 </tr>
                 <tr>
-                     <td>Deposits</td>
+                     <td>Sum of debits last 24 h</td>
                     <td>SEK 1680000</td>
                     <td><a><i class="fas fa-caret-right"></i></a></td>
                 </tr> 

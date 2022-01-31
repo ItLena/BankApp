@@ -16,6 +16,17 @@
     font-size: 36px;
     margin: 10px;
 }
+.logout{
+    display: flex;
+    justify-content:flex-end;
+    align-items:center;
+}
+.btn-logout{
+    border: none;
+    background-color: transparent;
+    font-size: 24px;
+}
 
-
-
+    .btn-logout:hover {
+       color: #FA7E26;
+    }

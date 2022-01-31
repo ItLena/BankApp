@@ -82,7 +82,7 @@ namespace BankApp.Pages.Customer
                 .ToList();
             }
 
-             Count =  _customerService.GetCount();
+             Count = _customerService.GetCount()/pageSize;
         }
     }
 }

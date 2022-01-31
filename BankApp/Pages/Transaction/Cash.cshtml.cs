@@ -26,6 +26,8 @@ namespace BankApp.Pages.Transaction
 
         public int TransactionId { get; set; }
         public int AccountId { get; set; }
+
+        [DataType(DataType.Date)]
         public DateTime Date { get; set; }
 
         [DisplayName("Choose type of transaction"), Required, StringLength(10)]
@@ -77,7 +79,7 @@ namespace BankApp.Pages.Transaction
                     Operation = Operation,
                     Type = Type,
                     Amount = Amount,
-                    Date = DateTime.UtcNow,
+                    Date = DateTime.UtcNow.Date,
                     Balance = Balance,
                     Symbol = Comment,
                     AccountId = accountId,

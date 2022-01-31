@@ -2,6 +2,8 @@ using BankApp.Models;
 using BankApp.Services;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.AspNetCore.Mvc.RazorPages;
+using System.ComponentModel;
+using System.ComponentModel.DataAnnotations;
 using System.Text.Json;
 
 
@@ -23,6 +25,8 @@ namespace BankApp.Pages.Account
 
         //display info on header (page view)
         public int AccountId { get; set; }
+        
+        [DataType(DataType.Date)]
         public DateTime Created { get; set; }
         public decimal TotalBalance { get; set; }
         public int CustomerId { get; set; }
@@ -32,6 +36,8 @@ namespace BankApp.Pages.Account
         {
             public int TransactionId { get; set; }
             public int AccountId { get; set; }
+
+            [DataType(DataType.Date)]
             public DateTime Date { get; set; }
             public string Operation { get; set; } = null!;
             public decimal Amount { get; set; }

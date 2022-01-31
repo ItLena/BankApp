@@ -4,11 +4,12 @@
 }
 <meta name="viewport" content="width=device-width, initial-scale=1.0" />
 <link rel="stylesheet" href="~/css/landing.css" asp-append-version="true" />
+<link rel="stylesheet" href="~/css/paging.css" asp-append-version="true" />
   <script src="https://kit.fontawesome.com/607a5ea1bc.js" crossorigin="anonymous"></script> 
 <body>
  <div class ="top-container">
         <div class = "side_bar">
-            <a asp-page="Customer/New" class="side_link">Add New Customer</a>
+            <a asp-page="/Customer/New" class="side_link">Add New Customer</a>
             <a href="#" class="side_link">Registrate new user</a>
             <a href="#" class="side_link">List all accounts</a>
             <a href="#" class="side_link">Currency rates</a>
@@ -65,33 +66,22 @@
                 <div class = "paging">
                         @if (Model.CurrentPage > 1)
                         {
-                            <a asp-route-currentPage="@(Model.CurrentPage - 1)" 
+                           <a asp-route-currentPage="@(Model.CurrentPage - 1)" 
                                asp-route-sortOrder="@(Model.SortOrder)" 
                                asp-route-sortColumn="@(Model.SortColumn)" 
-                               asp-page="Customer/Index">Prev</a>
+                               asp-page="Customer/Index"><i class="fas fa-step-backward"></i></a>
                         }
-                             <h4>  Showing @Model.CurrentPage of @Model.Count</h4>
-                      
-                    
+                             <h4>@Model.CurrentPage of @Model.Count</h4>
                    
                         @if (Model.CurrentPage < Model.Count)
                         {
-                            <a asp-route-currentPage="@(Model.CurrentPage + 1)"
+                           <a asp-route-currentPage="@(Model.CurrentPage + 1)"
                                asp-route-sortOrder="@(Model.SortOrder)" 
                                asp-route-sortColumn="@(Model.SortColumn)" 
-                               asp-page="/Customer/Index">Next</a>
+                               asp-page="/Customer/Index"><i class="fas fa-step-forward"></i></a>
                         }
-                  </div>
+                </div>
             </div>
-            
-            @*<ul >
-                        @for (var i = 1; i <= Model.Count; i++)
-                        {
-                            <li class="page-item @(i == Model.CurrentPage ? "active" : "")">
-                                <a asp-page="/Customer/Index"  asp-route-currentPage="@Model.CurrentPage">@i</a>
-                            </li>
-                        }
-                    </ul>*@
         </div>
-    </div>
+ </div>
 </body>

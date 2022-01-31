@@ -1,0 +1,24 @@
+@import url('https://fonts.googleapis.com/css2?family=Caveat:wght@500&family=Fjalla+One&family=Hind&family=Nunito:wght@300&family=Oleo+Script&display=swap');
+
+.paging{
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    padding: 2%;
+}
+
+.fa-step-forward, .fa-step-backward{
+    font-size: 30px;
+    color: #C4C4C4;
+}
+.fas:hover {
+   color: #FA7E26;
+}
+
+.text-danger {
+    color: #FA7E26;
+}
+
+a{
+    margin: 0 2%;
+}
