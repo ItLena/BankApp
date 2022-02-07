@@ -1,0 +1,16 @@
+@import url('https://fonts.googleapis.com/css2?family=Caveat:wght@500&family=Fjalla+One&family=Hind&family=Nunito:wght@300&display=swap');
+
+html {
+  position: relative;
+  min-height: 100%;
+  font-size: 16px;
+}
+
+body {
+    margin: 0;
+    font-family: Nunito, sans-serif;
+    background-image: linear-gradient(rgba(255, 255, 255, 0.2), rgba(255, 255, 255, 0.4)), url(/image/orange_waves.jpg);
+    background-color: #ffffff;
+    background-size: cover;
+    background-repeat: no-repeat;
+}

@@ -1,5 +1,6 @@
 using BankApp.Models;
 using BankApp.Services;
+using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.AspNetCore.Mvc.RazorPages;
 using System.ComponentModel;
@@ -7,11 +8,12 @@ using System.ComponentModel.DataAnnotations;
 
 namespace BankApp.Pages.Account
 {
-    public enum Freqwence
+     public enum Freqwence
     {
         Monthly,
         Weekly
     }
+    [Authorize]
     [BindProperties]
     public class NewAccountModel : PageModel
     {

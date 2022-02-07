@@ -16,13 +16,13 @@
 <body>
     <header>
        <div class="header">
-               <p class="logo">Nice Bank </p> 
+              <a asp-page="/Landing" class="logo">Nice Bank</a>
                <div class="logout">
                    @if (SignInManager.IsSignedIn(User))
                 { 
                  <form id="logoutForm" class="form-inline" asp-area="Identity" asp-page="/Account/Logout" asp-route-returnUrl="@Url.Page("/Index", new { area = "" })">
                        <button type="submit" class="btn-logout">Logout</button>
-                   </form>  @*<h1><a asp-page="/Landing">Open App</a></h1>    *@
+                   </form>  @*<h1><a asp-page="/Landing">Open App</a></h1>*@
                 } 
                 else
                 {

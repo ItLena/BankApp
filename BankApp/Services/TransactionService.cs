@@ -12,7 +12,7 @@ namespace BankApp.Services
             _context = context;
         }
         
-        [HttpGet]
+        //[HttpGet]
         IEnumerable<Transaction> ITransactionService.GetTransactions()
         {
             return _context.Transactions.ToList();
@@ -25,5 +25,6 @@ namespace BankApp.Services
             _context.SaveChanges();
             return transaction.TransactionId;
         }
+
     }
 }

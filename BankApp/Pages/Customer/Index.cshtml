@@ -9,10 +9,10 @@
 <body>
  <div class ="top-container">
         <div class = "side_bar">
+            <a asp-page="/Landing" class="side_link">Start page</a>
             <a asp-page="/Customer/New" class="side_link">Add New Customer</a>
-            <a href="#" class="side_link">Registrate new user</a>
-            <a href="#" class="side_link">List all accounts</a>
-            <a href="#" class="side_link">Currency rates</a>
+            <a asp-area="Identity" asp-page="/Account/Register" class="side_link">Registrate new user</a>
+            <a href="https://www.forex.se/valuta/aktuella-kurser" class="side_link">Currency rates</a>
         </div>
      
         <div class = "main-container">
@@ -64,23 +64,29 @@
                     }
             </table>
                 <div class = "paging">
-                        @if (Model.CurrentPage > 1)
+                        @if(Model.CurrentPage == 0)
                         {
-                           <a asp-route-currentPage="@(Model.CurrentPage - 1)" 
+                            Model.CurrentPage = 1;
+                        }
+                        @if (Model.CurrentPage >=1)
+                        {
+                            <a asp-route-currentPage="@(Model.CurrentPage - 1)"
                                asp-route-sortOrder="@(Model.SortOrder)" 
                                asp-route-sortColumn="@(Model.SortColumn)" 
-                               asp-page="Customer/Index"><i class="fas fa-step-backward"></i></a>
+                               asp-page="/Customer/Index"><i class="fas fa-step-backward"></i>
+                           </a>
                         }
                              <h4>@Model.CurrentPage of @Model.Count</h4>
                    
                         @if (Model.CurrentPage < Model.Count)
                         {
-                           <a asp-route-currentPage="@(Model.CurrentPage + 1)"
+                            <a asp-route-currentPage="@(Model.CurrentPage + 1)"
                                asp-route-sortOrder="@(Model.SortOrder)" 
                                asp-route-sortColumn="@(Model.SortColumn)" 
-                               asp-page="/Customer/Index"><i class="fas fa-step-forward"></i></a>
+                               asp-page="/Customer/Index"><i class="fas fa-step-forward"></i>
+                           </a>
                         }
-                </div>
+                 </div>
             </div>
         </div>
  </div>

@@ -1,5 +1,6 @@
 using BankApp.Models;
 using BankApp.Services;
+using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.AspNetCore.Mvc.RazorPages;
 using System.ComponentModel;
@@ -7,6 +8,7 @@ using System.ComponentModel.DataAnnotations;
 
 namespace BankApp.Pages.Customer
 {
+    [Authorize]
     [BindProperties]
     public class EditModel : PageModel
     {

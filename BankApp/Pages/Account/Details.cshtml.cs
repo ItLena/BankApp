@@ -1,5 +1,6 @@
 using BankApp.Models;
 using BankApp.Services;
+using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.AspNetCore.Mvc.RazorPages;
 using System.ComponentModel;
@@ -9,6 +10,7 @@ using System.Text.Json;
 
 namespace BankApp.Pages.Account
 {
+    [Authorize]
     [BindProperties]
     public class DetailsModel : PageModel
     {

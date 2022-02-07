@@ -1,5 +1,6 @@
 using BankApp.Models;
 using BankApp.Services;
+using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.AspNetCore.Mvc.RazorPages;
 using Microsoft.AspNetCore.Mvc.Rendering;
@@ -15,14 +16,14 @@ namespace BankApp.Pages.Customer
         Female,
         Underfind
     }
-
     public enum Freqwence
     {
         Monthly,
         Weekly
     }
+
+    [Authorize]
     [BindProperties]
-  
     public class NewModel : PageModel
     {
         

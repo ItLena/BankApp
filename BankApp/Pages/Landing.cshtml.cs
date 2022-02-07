@@ -13,11 +13,13 @@ namespace BankApp.Pages
         
         private readonly ICustomerService _customerService;
         private readonly BankAppDataContext _context;
+        private readonly ITransactionService _transactionService;
 
-        public LandingModel(ICustomerService customerService, BankAppDataContext context)
+        public LandingModel(ICustomerService customerService, BankAppDataContext context, ITransactionService transactionService)
         {
             _customerService = customerService;
             _context = context; 
+            _transactionService = transactionService;
         }
 
         public class Item
@@ -55,6 +57,11 @@ namespace BankApp.Pages
 
         public int TotalPages => (int)Math.Ceiling(decimal.Divide(Count, PageSize));
 
+        public decimal AmountOfCredits { get; set; }
+        public decimal AmountOfDebits{ get; set; }
+        public int AmountTransactions { get; set; }
+        public string Type { get; set; }
+
 
         public void OnGet(string sortColumn, string sortOrder, string searchPhrase, int pageSize, int currentPage)
         {
@@ -66,6 +73,18 @@ namespace BankApp.Pages
             CurrentPage = currentPage;
             PageSize = pageSize;
             Count = _customerService.GetCount();
+
+            var dateAndTime = DateTime.UtcNow;
+            var inDate = dateAndTime.Date.AddDays(-1);
+
+            AmountTransactions = _context.Transactions.Where(x=>x.Date >= inDate).Count();
+
+            AmountOfCredits = _context.Transactions
+                .Where(x => x.Date >= inDate && x.Type == "Credit")
+                .Count();
+            AmountOfDebits = _context.Transactions
+               .Where(x => x.Date >= inDate && x.Type == "Debit")
+               .Count();
 
             AmmountCustomers = _context.Customers.Select(c => c.CustomerId).Distinct().Count();
 

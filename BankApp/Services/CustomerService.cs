@@ -33,14 +33,11 @@ namespace BankApp.Services
                {
                     query = query.OrderBy(r => r.CountryCode);
                }
-                
                else
                {
                     query = query.OrderByDescending(r => r.CountryCode);
                }
-                
             }
-
             else if (sortColumn == "Name" || string.IsNullOrEmpty(sortColumn))
             {
                 if (sortOrder == "desc")
@@ -56,7 +53,6 @@ namespace BankApp.Services
                 else
                     query = query.OrderByDescending(r => r.City);
             }
-          
             return query.ToList();
         }
 

@@ -1,10 +1,12 @@
 using BankApp.Models;
 using BankApp.Services;
+using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.AspNetCore.Mvc.RazorPages;
 
 namespace BankApp.Pages.Customer
 {
+    [Authorize]
     public class ViewCustomerModel : PageModel
     {
         private readonly ICustomerService _customerService;

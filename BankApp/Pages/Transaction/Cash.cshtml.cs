@@ -1,4 +1,5 @@
 using BankApp.Services;
+using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.AspNetCore.Mvc.RazorPages;
 using System.ComponentModel;
@@ -12,6 +13,7 @@ namespace BankApp.Pages.Transaction
         Debit
     }
     
+    [Authorize]
     [BindProperties]
     public class CashModel : PageModel
     {

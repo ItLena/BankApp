@@ -1,0 +1,49 @@
+﻿@page
+@model BankApp.Pages.Transaction.IndexModel
+@{
+}
+<meta name="viewport" content="width=device-width, initial-scale=1.0" />
+<link rel="stylesheet" href="~/css/landing.css" asp-append-version="true" />
+<link rel="stylesheet" href="~/css/paging.css" asp-append-version="true" />
+  <script src="https://kit.fontawesome.com/607a5ea1bc.js" crossorigin="anonymous"></script> 
+<body>
+ <div class ="top-container">
+        <div class = "side_bar">
+            <a asp-page="/Landing" class="side_link">Start page</a>
+           <a asp-page="/Customer/New" class="side_link">Add New Customer</a>
+            <a asp-area="Identity" asp-page="/Account/Register" class="side_link">Registrate new user</a>
+            <a asp-page="/Customer/Index" class="side_link">List all customers</a>
+            <a href="https://www.forex.se/valuta/aktuella-kurser" class="side_link">Currency rates</a>
+        </div>
+     
+        <div class = "main-container">
+            
+            <div class="info_bar customers">
+                <h2>Transactions List</h2> 
+               <table class="table customer">
+                    <tr>
+                        <th>Date</th>
+                        <th>Type</th>
+                        <th>Operation</th>
+                        <th>Amount </th>
+                        <th>Balance</th>
+                        <th>Account Id</th>
+                    </tr>
+
+                    @foreach (var item in Model.Items)
+                    {
+                        <tr>
+                            <td> @item.Date</td>
+                            <td> @item.Type</td>
+                            <td> @item.Operation</td>
+                            <td> @item.Amount</td>
+                            <td> @item.Balance</td>
+                            <td> @item.AccountId</td>
+                        </tr>
+                    }
+            </table>
+               
+            </div>
+        </div>
+ </div>
+</body>

@@ -1,10 +1,12 @@
 using BankApp.Services;
+using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.AspNetCore.Mvc.RazorPages;
 using System.ComponentModel;
 
 namespace BankApp.Pages.Customer
 {
+    [Authorize]
     public class IndexModel : PageModel
     {
         private readonly ICustomerService _customerService;
@@ -61,7 +63,7 @@ namespace BankApp.Pages.Customer
                     City = c.City,
                     CountryCode = c.CountryCode,
                 }).Where(x => x.Name.ToLower().Contains(searchPhrase.ToLower()) || x.PersonalNumber.Contains(searchPhrase) || x.CountryCode.ToLower().Contains(searchPhrase.ToLower()) || x.City.ToLower().Contains(searchPhrase.ToLower()))
-                .Skip((currentPage - 1) * pageSize).Take(pageSize)
+                .Skip((currentPage) * pageSize).Take(pageSize)
                 .ToList();
              }
 
@@ -78,7 +80,7 @@ namespace BankApp.Pages.Customer
                     City = c.City,
                     CountryCode = c.CountryCode,
                 })
-                .Skip((currentPage - 1) * pageSize).Take(pageSize)
+                .Skip((currentPage) * pageSize).Take(pageSize)
                 .ToList();
             }
 

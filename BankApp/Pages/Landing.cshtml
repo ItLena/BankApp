@@ -38,26 +38,26 @@
             <div class = "info_bar data">
                 <table class = "table data">
                    <tr>
-                    <td>Amount transaktions last 24 h</td>
-                    <td>SEK 30000000</td>
-                   <td><a href=""> <i class="fas fa-caret-right"></i></a></td> 
+                    <td>Total transfers last 24 h</td>
+                    <td>@Model.AmountTransactions</td>
+                   <td><a asp-page="/Transaction/Index"> <i class="fas fa-caret-right"></i></a></td> 
                     </tr>
                 <tr>
-                     <td>Sum of credits last 24 h</td>
-                    <td>SEK 63980000</td>
-                    <td><a><i class="fas fa-caret-right"></i></a></td> 
+                    <td>Credit transfers last 24 h</td>
+                    <td>@Model.AmountOfCredits</td>
+                   
                 </tr>
                 <tr>
-                     <td>Sum of debits last 24 h</td>
-                    <td>SEK 1680000</td>
-                    <td><a><i class="fas fa-caret-right"></i></a></td>
+                     <td>Debit transfers last 24 h</td>
+                    <td>@Model.AmountOfDebits</td>
+                    
                 </tr> 
                
             </table>
             </div>
 
             <div class = "search_bar">
-                <h2>Search customer by name or number</h2>
+                <h2>Search customer by name, country code or INN</h2>
                <form method = "get" asp-action="SearchPhrase" class = "form-search">
                     <input name="searchPhrase" type="text" placeholder=" Search.." id = "search-box">
                     <button class = "btn-search" type="submit"><i class="fas fa-search"></i></button>
@@ -100,7 +100,7 @@
                             </td>
                         </tr>
                     }
-                    }
+                }
                 </table>
             </div>
         </div>
