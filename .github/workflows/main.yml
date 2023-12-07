@@ -1,0 +1,29 @@
+name: Publish
+on:
+  workflow_dispatch: 
+  push:
+    branches:
+      -main
+
+jobs:
+  publish:
+    runs-on: ubuntu-latest
+
+    steps:
+      -name: Checkout the code
+       uses: actions/checkout@v3
+
+      -name: Setup .Net
+       uses: actions/setup-dotnet@v3
+       with:
+         dotnet-version: '7.0.x'
+
+      -name: Restore
+       run: dotnet restore ./GithubActionsBankApp.sln
+
+      -name: Build
+       run: dotnet build ./GithubActionsBankApp.sln --configuration Release --no-restore
+
+      -name: Publish
+       run: dotnet publish ./GithubActionsBankApp.sln --configuration Release --no-build
+        
